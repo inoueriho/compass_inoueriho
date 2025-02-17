@@ -55,11 +55,12 @@ class LoginController extends Controller
     public function loginPost(Request $request)
     {
         $userdata = $request -> only('mail_address', 'password');
+        // dd($userdata);
         if (Auth::attempt($userdata)) {
-            return redirect('/top');
-        }else{
+            return redirect('/top'); //ログインが成功したらトップページに推移
+        }
+        else{
             return redirect('/login')->with('flash_message', 'name or password is incorrect');
         }
     }
-
 }

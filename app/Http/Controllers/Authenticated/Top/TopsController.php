@@ -8,7 +8,8 @@ use Auth;
 
 class TopsController extends Controller
 {
-    public function show(){
+    public function show(Request $request){
+        Auth::user();
         return view('authenticated.top.top');
     }
 
