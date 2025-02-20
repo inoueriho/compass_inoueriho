@@ -44,7 +44,7 @@ class UserRequest extends FormRequest
             'under_name' => ' required | string | max:10',
             'over_name_kana' => ' required | string | max:30 | regex:/^[ｧ-ﾝﾞﾟ]*$/ ',
             'under_name_kana' => ' required | string | max:30 | regex:/^[ｧ-ﾝﾞﾟ]*$/ ',
-            'mail_address' => 'required |email | min:5 | max:100 | unique:users,mail',
+            'mail_address' => 'required |email | min:5 | max:100 | unique:users,mail_address',
             'sex' => 'required | in:1,2,3', //男女その他ではなく数字で入れる
             'datetime' => 'required | date | after:1999-12-31 | before:tomorrow', //before afterの日は含まない
             'role' => 'required | in:1,2,3,4',

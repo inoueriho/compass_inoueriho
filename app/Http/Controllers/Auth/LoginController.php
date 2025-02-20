@@ -44,7 +44,7 @@ class LoginController extends Controller
     public function loginView(Request $request)
     {
         if($request->isMethod('subjects')){
-            $data=$request->only('mail','password');
+            $data=$request->only('mail_address','password');
             if(Auth::attempt($data)){
                 return redirect('/top');
             }
