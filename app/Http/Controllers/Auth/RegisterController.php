@@ -60,7 +60,7 @@ class RegisterController extends Controller
 
     public function registerPost(UserRequest $request)
     {
-        dd($request);
+        // dd($request);
         DB::beginTransaction();
         try{
             $old_year = $request->old_year;
@@ -81,9 +81,11 @@ class RegisterController extends Controller
                 'role' => $request->role,
                 'password' => bcrypt($request->password)
             ]);
+            // dd($user_get);
             $user = User::findOrFail($user_get->id);
             $user->subjects()->attach($subjects);
             DB::commit();
+            dd($user);
             return view('auth.login.login');
         }catch(\Exception $e){
             DB::rollback();
