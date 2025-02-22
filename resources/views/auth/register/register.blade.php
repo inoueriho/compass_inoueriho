@@ -21,7 +21,7 @@
         <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;">
             <div class="w-25 vh-75 border p-3">
                 <div class="register_form">
-                    <!-- <p class="validation_message">名前は必ず入力してください。</p> -->
+                    <p class="validation_message">名前は必ず入力してください。</p>
                     <div class="d-flex mt-3" style="justify-content:space-between">
 
                         <div class="" style="width:140px">
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <div class="mt-3">
-                        <!-- <p class="validation_message">メールアドレスは必ず入力してください。</p> -->
+                        <p class="validation_message">メールアドレスは必ず入力してください。</p>
                         @if($errors->has('mail_address')) <span class="text-danger">{{ $errors->first('mail_address') }}</span> @endif
                         <label class="m-0 d-block" style="font-size:13px">メールアドレス</label>
                         <div class="border-bottom border-primary">
