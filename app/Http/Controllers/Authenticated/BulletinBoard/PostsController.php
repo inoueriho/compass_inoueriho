@@ -54,10 +54,16 @@ class PostsController extends Controller
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
+        $validated = $request->validate([
+            'post_category_id' => 'required | in_array:sub_categories',
+            'post_title' => 'required | string | max:100',
+            'post_body' => 'required | string | max:5000'
+        ]);
         return redirect()->route('post.show');
     }
 
     public function postEdit(Request $request){
+        $user_id = Auth::id();
         Post::where('id', $request->post_id)->update([
             'post_title' => $request->post_title,
             'post' => $request->post_body,
@@ -66,6 +72,7 @@ class PostsController extends Controller
     }
 
     public function postDelete($id){
+        $user_id = Auth::id();
         Post::findOrFail($id)->delete();
         return redirect()->route('post.show');
     }
