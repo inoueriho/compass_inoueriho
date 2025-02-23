@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Users\Subjects;
 use Illuminate\Support\Facades\DB;
 
-class SubjectsTableSeeder extends Seeder
+class SubjectUsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +13,7 @@ class SubjectsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('subjects')->insert([
+        DB::table('subject_users')->insert([
           ['user_id' => '1',
            'subject_id' => '2',
           ],

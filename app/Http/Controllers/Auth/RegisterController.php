@@ -83,9 +83,11 @@ class RegisterController extends Controller
             ]);
             // dd($user_get);
             $user = User::findOrFail($user_get->id);
+            // dd($user);
             $user->subjects()->attach($subjects);
-            DB::commit();
             dd($user);
+            //ここが反映してない。
+            DB::commit();
             return view('auth.login.login');
         }catch(\Exception $e){
             DB::rollback();
