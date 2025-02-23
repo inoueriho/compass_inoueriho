@@ -30,11 +30,13 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('/top', 'TopsController@show')->name('top.show');
         });
         Route::namespace('Calendar')->group(function(){
+            //生徒
             Route::namespace('General')->group(function(){
                 Route::get('/calendar/{user_id}', 'CalendarsController@show')->name('calendar.general.show');
                 Route::post('/reserve/calendar', 'CalendarsController@reserve')->name('reserveParts');
                 Route::post('/delete/calendar', 'CalendarsController@delete')->name('deleteParts');
             });
+            //講師
             Route::namespace('Admin')->group(function(){
                 Route::get('/calendar/{user_id}/admin', 'CalendarsController@show')->name('calendar.admin.show');
                 Route::get('/calendar/{date}/{part}', 'CalendarsController@reserveDetail')->name('calendar.admin.detail');
@@ -47,14 +49,20 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('/bulletin_board/input', 'PostsController@postInput')->name('post.input');
             Route::get('/bulletin_board/like', 'PostsController@likeBulletinBoard')->name('like.bulletin.board');
             Route::get('/bulletin_board/my_post', 'PostsController@myBulletinBoard')->name('my.bulletin.board');
+            //投稿処理
             Route::post('/bulletin_board/create', 'PostsController@postCreate')->name('post.create');
             Route::post('/create/main_category', 'PostsController@mainCategoryCreate')->name('main.category.create');
             Route::post('/create/sub_category', 'PostsController@subCategoryCreate')->name('sub.category.create');
             Route::get('/bulletin_board/post/{id}', 'PostsController@postDetail')->name('post.detail');
+            //投稿編集処理
             Route::post('/bulletin_board/edit', 'PostsController@postEdit')->name('post.edit');
+            //投稿削除処理
             Route::get('/bulletin_board/delete/{id}', 'PostsController@postDelete')->name('post.delete');
+            //コメント投稿処理
             Route::post('/comment/create', 'PostsController@commentCreate')->name('comment.create');
+            //いいね処理
             Route::post('/like/post/{id}', 'PostsController@postLike')->name('post.like');
+            //いいね解除処理
             Route::post('/unlike/post/{id}', 'PostsController@postUnLike')->name('post.unlike');
         });
         Route::namespace('Users')->group(function(){

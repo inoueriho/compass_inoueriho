@@ -7,6 +7,7 @@
         <div class="detail_inner_head">
           <div>
           </div>
+          <!-- ↓ログインユーザーにのみ表示させる -->
           @if(Auth::user()->id == $post->user_id)
           {{ csrf_field() }}
           <div>
