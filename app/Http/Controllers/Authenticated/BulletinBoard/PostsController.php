@@ -87,6 +87,9 @@ class PostsController extends Controller
             'user_id' => Auth::id(),
             'comment' => $request->comment
         ]);
+        $validated = $request->validate([
+            'comment' => ' required | string | max:250 '
+        ]);
         return redirect()->route('post.detail', ['id' => $request->post_id]);
     }
 

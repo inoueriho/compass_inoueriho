@@ -3,6 +3,8 @@
 namespace App\Models\Posts;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Posts\Like;
+use Auth;
 
 class Post extends Model
 {
@@ -31,8 +33,23 @@ class Post extends Model
     public function commentCounts($post_id){
         return Post::with('postComments')->find($post_id)->postComments();
     }
-    // //likeとのリレーションの定義
-    // public function likes(){
-    //     return $this->hasMany('App\Models\like');
-    // }
+    //likeとのリレーションの定義
+    public function likes(){
+        return $this->hasMany('App\Models\posts\like');
+    }
+//     public function is_like_by_auth_user()
+//   {
+//     $id = Auth::id();
+
+//     $likers = array();
+//     foreach($this->likes as $like) {
+//       array_push($likers, $like->user_id);
+//     }
+
+//     if (in_array($id, $likers)) {
+//       return true;
+//     } else {
+//       return false;
+//     }
+//   }
 }

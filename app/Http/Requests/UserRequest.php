@@ -67,7 +67,8 @@ class UserRequest extends FormRequest
             "confirmed" => "パスワード確認が一致しません",
             "datetime" => "有効な日付に直してください",
             "datetime.after" => "2000年1月1日から今日までの日付を入力してください",
-            "datetime.before" => "2000年1月1日から今日までの日付を入力してください"
+            "datetime.before" => "2000年1月1日から今日までの日付を入力してください",
+            "comment.max" => "250文字以内で入力してください"
         ];
     }
 
