@@ -85,6 +85,7 @@ class RegisterController extends Controller
             $user = User::findOrFail($user_get->id);
             // dd($user);
             $user->subjects()->attach($subjects);
+            //userにsubjectsテーブルの$subjectsを紐づける
             dd($user);
             //ここが反映してない。
             DB::commit();

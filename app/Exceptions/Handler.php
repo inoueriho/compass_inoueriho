@@ -49,10 +49,11 @@ class Handler extends ExceptionHandler
      *
      * @throws \Exception
      */
+    //セッションタイムアウト時はログインページにリダイレクトさせる
     public function render($request, Exception $exception)
     {
-        if($exception instanceof TokenMismatchException){
-            return redirect()->route('login');
+        if($exception instanceof TolenMismatchException){
+            return redirect()->route('loginView');
         }
         return parent::render($request, $exception);
     }

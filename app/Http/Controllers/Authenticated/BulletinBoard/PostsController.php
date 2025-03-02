@@ -66,7 +66,11 @@ class PostsController extends Controller
         $user_id = Auth::id();
         Post::where('id', $request->post_id)->update([
             'post_title' => $request->post_title,
-            'post' => $request->post_body,
+            'post_body' => $request->post_body,
+        ]);
+        $validated = $request->validate([
+                'post_title_edit' => 'required | string | max:100',
+                'post_body_edit' => 'required | string | max:5000'
         ]);
         return redirect()->route('post.detail', ['id' => $request->post_id]);
     }
