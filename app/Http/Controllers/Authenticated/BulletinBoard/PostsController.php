@@ -49,6 +49,7 @@ class PostsController extends Controller
     }
 
     public function postCreate(PostFormRequest $request){
+                             //↑ここにバリデーション記載しているページ記載
         $post = Post::create([
             'user_id' => Auth::id(),
             'post_title' => $request->post_title,
@@ -63,10 +64,7 @@ class PostsController extends Controller
     }
 
     public function postEdit(PostFormRequest $request){
-        // $validated = $request->validate([
-        //         'post_title' => 'required | string | max:100',
-        //         'post_body' => 'required | string | max:5000'
-        // ]);
+                             //↑ここにバリデーション記載しているページ記載
         $user_id = Auth::id();
         Post::where('id', $request->post_id)->edit([
             'post_title' => $request->post_title,
@@ -86,9 +84,10 @@ class PostsController extends Controller
     }
 
     public function commentCreate(PostFormRequest $request){
-        $validated = $request->validate([
-            'comment' => ' required | string | max:250 '
-        ]);
+                                //↑ここにバリデーション記載しているページ記載
+        // $validated = $request->validate([
+        //     'comment' => ' required | string | max:250 '
+        // ]);
         PostComment::create([
             'post_id' => $request->post_id,
             'user_id' => Auth::id(),
