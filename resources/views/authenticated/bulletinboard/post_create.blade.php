@@ -17,20 +17,14 @@
       <p class="mb-0">タイトル</p>
       <input type="text" class="w-100" form="postCreate" name="post_title" value="{{ old('post_title') }}">
       @if ($errors->has('post_title'))
-        <p class="error-message">{{$errors->first('post_title')}}</p>
-      @endif
-      @if ($errors->has('post_title_edit'))
-        <p class="error-message">{{$errors->first('post_title_edit')}}</p>
+        <p class="text-danger">{{$errors->first('post_title')}}</p>
       @endif
     </div>
     <div class="mt-3">
       <p class="mb-0">投稿内容</p>
       <textarea class="w-100" form="postCreate" name="post_body">{{ old('post_body') }}</textarea>
       @if ($errors->has('post_body'))
-        <p class="error-message">{{$errors->first('post_body')}}</p>
-      @endif
-      @if ($errors->has('post_body_edit'))
-        <p class="error-message">{{$errors->first('post_body_edit')}}</p>
+        <p class="text-danger">{{$errors->first('post_body')}}</p>
       @endif
     </div>
     <div class="mt-3 text-right">

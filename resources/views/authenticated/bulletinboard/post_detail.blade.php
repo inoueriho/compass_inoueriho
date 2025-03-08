@@ -18,6 +18,8 @@
         </div>
 
         <div class="contributor d-flex">
+          @if($errors->has('post_title')) <p class="text-danger">{{ $errors->first('post_title') }}</p> @endif
+          @if($errors->has('post_body')) <p class="text-danger">{{ $errors->first('post_body') }}</p> @endif
           <p>
             <span>{{ $post->user->over_name }}</span>
             <span>{{ $post->user->under_name }}</span>
@@ -48,7 +50,7 @@
     <div class="comment_container border m-5">
       <div class="comment_area p-3">
         <p class="m-0">コメントする</p>
-        @if($errors->has('comment')) <span class="text-danger">{{ $errors->first('comment') }}</span> @endif
+        @if($errors->has('comment')) <p class="text-danger">{{ $errors->first('comment') }}</p> @endif
         <textarea class="w-100" name="comment" form="commentRequest"></textarea>
         <input type="hidden" name="post_id" form="commentRequest" value="{{ $post->id }}">
         <input type="submit" class="btn btn-primary" form="commentRequest" value="投稿">
@@ -57,6 +59,7 @@
     </div>
   </div>
 </div>
+<!-- モーダルの中身 -->
 <div class="modal js-modal">
   <div class="modal__bg js-modal-close"></div>
   <div class="modal__content">
@@ -64,15 +67,11 @@
       <div class="w-100">
         <div class="modal-inner-title w-50 m-auto">
           <input type="text" name="post_title" placeholder="タイトル" class="w-100">
-          @if($errors->first('post_title'))
-              <span class="error_message">{{ $errors->first('post_title') }}</span>
-          @endif
+
         </div>
         <div class="modal-inner-body w-50 m-auto pt-3 pb-3">
           <textarea placeholder="投稿内容" name="post_body" class="w-100"></textarea>
-          @if($errors->first('post_body'))
-              <span class="error_message">{{ $errors->first('post_body') }}</span>
-          @endif
+
         </div>
         <div class="w-50 m-auto edit-modal-btn d-flex">
           <a class="js-modal-close btn btn-danger d-inline-block" href="">閉じる</a>

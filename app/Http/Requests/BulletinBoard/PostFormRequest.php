@@ -21,11 +21,22 @@ class PostFormRequest extends FormRequest
      *
      * @return array
      */
+
+     public function getValidatorInstance() {
+        //この場で作った変数にもバリデーションを設定できるようにする↓
+        // $this->merge([
+        //     'datetime' => $datetime,
+        // ]);
+        return parent::getValidatorInstance();
+        //ここで定義した変数はここでしか使えないようにする↑
+     }
+
     public function rules()
     {
         return [
             'post_title' => 'min:4|max:50',
             'post_body' => 'min:10|max:500',
+            'comment' => 'string|max:250'
         ];
     }
 
@@ -35,6 +46,8 @@ class PostFormRequest extends FormRequest
             'post_title.max' => 'タイトルは50文字以内で入力してください。',
             'post_body.min' => '内容は10文字以上入力してください。',
             'post_body.max' => '最大文字数は500文字です。',
+            'comment.string' => 'コメントは必須項目です。',
+            'comment.max' => '最大文字数は250文字です。',
         ];
     }
 }

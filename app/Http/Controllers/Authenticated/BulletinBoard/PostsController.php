@@ -54,23 +54,23 @@ class PostsController extends Controller
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
-        $validated = $request->validate([
-            'post_category_id' => 'required | in_array:sub_categories',
-            'post_title' => 'required | string | max:100',
-            'post_body' => 'required | string | max:5000'
-        ]);
+        // $validated = $request->validate([
+        //     'post_category_id' => 'required | in_array:sub_categories',
+        //     'post_title' => 'required | string | max:100',
+        //     'post_body' => 'required | string | max:5000'
+        // ]);
         return redirect()->route('post.show');
     }
 
-    public function postEdit(Request $request){
+    public function postEdit(PostFormRequest $request){
+        // $validated = $request->validate([
+        //         'post_title' => 'required | string | max:100',
+        //         'post_body' => 'required | string | max:5000'
+        // ]);
         $user_id = Auth::id();
-        Post::where('id', $request->post_id)->update([
+        Post::where('id', $request->post_id)->edit([
             'post_title' => $request->post_title,
-            'post_body' => $request->post_body,
-        ]);
-        $validated = $request->validate([
-                'post_title_edit' => 'required | string | max:100',
-                'post_body_edit' => 'required | string | max:5000'
+            'post' => $request->post_body,
         ]);
         return redirect()->route('post.detail', ['id' => $request->post_id]);
     }
@@ -85,14 +85,14 @@ class PostsController extends Controller
         return redirect()->route('post.input');
     }
 
-    public function commentCreate(Request $request){
+    public function commentCreate(PostFormRequest $request){
+        $validated = $request->validate([
+            'comment' => ' required | string | max:250 '
+        ]);
         PostComment::create([
             'post_id' => $request->post_id,
             'user_id' => Auth::id(),
             'comment' => $request->comment
-        ]);
-        $validated = $request->validate([
-            'comment' => ' required | string | max:250 '
         ]);
         return redirect()->route('post.detail', ['id' => $request->post_id]);
     }

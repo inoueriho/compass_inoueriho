@@ -30,13 +30,13 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('/top', 'TopsController@show')->name('top.show');
         });
         Route::namespace('Calendar')->group(function(){
-            //生徒
+            //スクール予約
             Route::namespace('General')->group(function(){
                 Route::get('/calendar/{user_id}', 'CalendarsController@show')->name('calendar.general.show');
                 Route::post('/reserve/calendar', 'CalendarsController@reserve')->name('reserveParts');
                 Route::post('/delete/calendar', 'CalendarsController@delete')->name('deleteParts');
             });
-            //講師
+            //講師のみ　スクール予約確認・スクール枠登録
             Route::namespace('Admin')->group(function(){
                 Route::get('/calendar/{user_id}/admin', 'CalendarsController@show')->name('calendar.admin.show');
                 Route::get('/calendar/{date}/{part}', 'CalendarsController@reserveDetail')->name('calendar.admin.detail');
@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::post('/setting/update/admin', 'CalendarsController@updateSettings')->name('calendar.admin.update');
             });
         });
+
         Route::namespace('BulletinBoard')->group(function(){
             Route::get('/bulletin_board/posts/{keyword?}', 'PostsController@show')->name('post.show');
             Route::get('/bulletin_board/input', 'PostsController@postInput')->name('post.input');

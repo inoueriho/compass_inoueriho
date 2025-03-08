@@ -87,7 +87,6 @@ class RegisterController extends Controller
             $user->subjects()->attach($subjects);
             //userにsubjectsテーブルの$subjectsを紐づける
             // dd($user);
-            //ここが反映してない。
             DB::commit();
             return view('auth.login.login');
         }catch(\Exception $e){

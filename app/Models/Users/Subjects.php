@@ -17,5 +17,6 @@ class Subjects extends Model
 
     public function users(){
         return $this->belongsToMany(User::class,'subject_users','user_id','subject_id');// リレーションの定義
+                                              //'多対多のための中間テーブル',
     }
 }
