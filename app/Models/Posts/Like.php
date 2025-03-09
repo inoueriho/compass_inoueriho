@@ -17,6 +17,7 @@ class Like extends Model
         return $this->where('like_post_id', $post_id)->get()->count();
     }
 
+    // likesテーブルとpostsテーブルのリレーション
     public function post(){
         return $this->belongTo('App\Models\posts\post');
     }
