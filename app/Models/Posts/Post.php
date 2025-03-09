@@ -4,6 +4,7 @@ namespace App\Models\Posts;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Posts\Like;
+use App\Models\Posts\PostComment;
 use Auth;
 
 class Post extends Model
@@ -20,19 +21,16 @@ class Post extends Model
     public function user(){
         return $this->belongsTo('App\Models\Users\User');
     }
-
-    public function postComments(){
-        return $this->hasMany('App\Models\Posts\PostComment');
-    }
-
     public function subCategories(){
         // リレーションの定義
     }
 
-    // コメント数
-    public function commentCounts($post_id){
-        return Post::with('postComments')->find($post_id)->postComments();
+    // postCommentsとのリレーション　postsから見ると一つの投稿に複数コメントつくため1対多のリレーション
+    public function postComments(){
+        return $this->hasMany('App\Models\Posts\PostComment');
     }
+    // コメント数
+
     //likeとのリレーションの定義　postsから見ると一つの投稿に複数いいねつくため１対多のリレーション
     public function likes(){
         return $this->hasMany('App\Models\posts\like');

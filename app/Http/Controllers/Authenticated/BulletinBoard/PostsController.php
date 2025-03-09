@@ -20,6 +20,7 @@ class PostsController extends Controller
         $categories = MainCategory::get();
         $like = new Like;
         $post_comment = new Post;
+        // dd($posts);
         if(!empty($request->keyword)){
             $posts = Post::with('user', 'postComments')
             ->where('post_title', 'like', '%'.$request->keyword.'%')
@@ -95,6 +96,7 @@ class PostsController extends Controller
         ]);
         return redirect()->route('post.detail', ['id' => $request->post_id]);
     }
+
 
     public function myBulletinBoard(){
         $posts = Auth::user()->posts()->get();

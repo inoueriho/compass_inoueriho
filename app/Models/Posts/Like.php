@@ -22,6 +22,7 @@ class Like extends Model
         return $this->belongTo('App\Models\posts\post');
     }
 
+    // いいねしているかの判断
     public function is_Like(){
         return $this->belongsTo('App\Models\posts\like');
     }

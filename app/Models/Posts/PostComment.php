@@ -5,6 +5,7 @@ namespace App\Models\Posts;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Users\User;
+use App\Models\Posts\Post;
 
 class PostComment extends Model
 {
@@ -17,11 +18,16 @@ class PostComment extends Model
         'comment',
     ];
 
+    // postsテーブルとposts_commentのリレーション
     public function post(){
         return $this->belongsTo('App\Models\Posts\Post');
     }
 
     public function commentUser($user_id){
         return User::where('id', $user_id)->first();
+    }
+
+    public function commentCounts($post_id){
+        return Post::with('PostComment')->find($post_id)->postComments();
     }
 }
