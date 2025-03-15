@@ -10,8 +10,11 @@
       <p><a href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $post->post_title }}</a></p>
       <div class="post_bottom_area d-flex">
         <div class="d-flex post_status">
-          <div class="mr-5">
-            <i class="fa fa-comment" comment_id="{{ $post_comment->id }}"></i>
+          <div>
+            <p class="mr-5">
+            <i class="fa fa-comment" comment_id="{{ $post->user_id }}"></i>
+            {{ $post->commentCounts($post->user_id) }}
+            </p>
           </div>
           <div>
             @if(Auth::user()->is_Like($post->id))
