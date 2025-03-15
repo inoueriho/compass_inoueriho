@@ -52,7 +52,9 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('/bulletin_board/my_post', 'PostsController@myBulletinBoard')->name('my.bulletin.board');
             //投稿処理
             Route::post('/bulletin_board/create', 'PostsController@postCreate')->name('post.create');
+            // カテゴリー追加
             Route::post('/create/main_category', 'PostsController@mainCategoryCreate')->name('main.category.create');
+            // サブカテゴリー追加
             Route::post('/create/sub_category', 'PostsController@subCategoryCreate')->name('sub.category.create');
             Route::get('/bulletin_board/post/{id}', 'PostsController@postDetail')->name('post.detail');
             //投稿編集処理

@@ -35,16 +35,31 @@
     <form action="{{ route('post.create') }}" method="post" id="postCreate">{{ csrf_field() }}</form>
   </div>
   <div class="w-25 ml-auto mr-auto">
+    @can ('admin_only')
     <div class="category_area mt-5 p-5">
-      <div class="">
-      <p class="validation_message">メインカテゴリーは必ず入力してください。</p>
+      <div class="main_category">
+        <p class="validation_message">メインカテゴリーは必ず入力してください。</p>
         <p class="m-0">メインカテゴリー</p>
         <input type="text" class="w-100" name="main_category_name" form="mainCategoryRequest">
         <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="mainCategoryRequest">
       </div>
       <!-- サブカテゴリー追加 -->
-      <form action="{{ route('main.category.create') }}" method="post" id="mainCategoryRequest">{{ csrf_field() }}</form>
+       <div class="sub_category">
+          <p class="validation_message">サブカテゴリーは必ず入力してください。</p>
+          <p class="m-0">サブカテゴリー</p>
+          <!-- 登録されているメインカテゴリーから選択する -->
+          <select class="w-100" form="mainCategoryRequest" name="main_category_id">
+            @foreach($main_categories as $main_category)
+            <option label="{{ $main_category->main_category }}"></option>
+            @endforeach
+          </select>
+          <!-- サブカテゴリーの入力 -->
+          <input type="text" class="w-100" name="sub_category_name" form="subCategoryRequest">
+          <form action="{{ route('sub.category.create') }}" method="post" id="subCategoryRequest">{{ csrf_field() }}</form>
+          <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="subCategoryRequest">
+        </div>
     </div>
+    @endcan
   </div>
 </div>
 @endsection
