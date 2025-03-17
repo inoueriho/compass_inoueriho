@@ -12,8 +12,8 @@
         <div class="d-flex post_status">
           <div>
             <p class="mr-5">
-            <i class="fa fa-comment" comment_id="{{ $post->user_id }}"></i>
-            {{ $post->commentCounts($post->user_id) }}
+            <i class="fa fa-comment" comment_id="{{ $post->id }}"></i>
+            {{ $post->commentCounts($post->post_id) }}
             </p>
           </div>
           <div>

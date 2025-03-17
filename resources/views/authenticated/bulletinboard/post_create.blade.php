@@ -37,6 +37,7 @@
   <div class="w-25 ml-auto mr-auto">
     @can ('admin_only')
     <div class="category_area mt-5 p-5">
+      <!-- メインカテゴリー追加 -->
       <div class="main_category">
         <p class="validation_message">メインカテゴリーは必ず入力してください。</p>
         <p class="m-0">メインカテゴリー</p>

@@ -19,7 +19,7 @@ class PostsController extends Controller
         $posts = Post::with('user', 'postComments')->get();
         $categories = MainCategory::get();
         $like = new Like;
-        $post_comment = new Post;
+        $post_comment = new PostComment;
         // dd($posts);
         if(!empty($request->keyword)){
             $posts = Post::with('user', 'postComments')
@@ -85,7 +85,8 @@ class PostsController extends Controller
         return redirect()->route('post.input');
     }
     public function subCategoryCreate(PostFormRequest $request){
-        // dd($request);
+        $main_categories = MainCategory::get();
+        // dd($main_categories);
         SubCategory::create([
             'main_category' => $request->main_category_id,
             'sub_category' => $request->sub_category_name
