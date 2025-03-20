@@ -20,7 +20,8 @@ class PostsController extends Controller
         $categories = MainCategory::get();
         $like = new Like;
         $post_comment = new PostComment;
-        // dd($posts);
+        $post_id = PostComment::get();
+        // dd($post_id);
         if(!empty($request->keyword)){
             $posts = Post::with('user', 'postComments')
             ->where('post_title', 'like', '%'.$request->keyword.'%')

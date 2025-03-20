@@ -13,7 +13,7 @@
           <div>
             <p class="mr-5">
             <i class="fa fa-comment" comment_id="{{ $post->id }}"></i>
-            {{ $post->commentCounts($post->post_id) }}
+            {{ $post->commentCounts($post->id) }}
             </p>
           </div>
           <div>

@@ -33,8 +33,10 @@ class Post extends Model
     // public function commentCounts($posts){
     //     return Post::with('PostComments')->find($posts);
     // }
-    public function commentCounts($posts){
-        return $this->where('user_id', $posts)->get()->count();
+
+    public function commentCounts($post_id){
+        return PostComment::where('post_id', $post_id)->get()->count();
+        // PostCommentモデルから参照する
     }
 
     //likeとのリレーションの定義　postsから見ると一つの投稿に複数いいねつくため１対多のリレーション
