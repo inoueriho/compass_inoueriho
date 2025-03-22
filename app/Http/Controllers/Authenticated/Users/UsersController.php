@@ -15,6 +15,7 @@ class UsersController extends Controller
 {
 
     public function showUsers(Request $request){
+        $user = User::with('subjects')->get();
         $keyword = $request->keyword;
         $category = $request->category;
         $updown = $request->updown;
@@ -24,12 +25,14 @@ class UsersController extends Controller
         $userFactory = new SearchResultFactories();
         $users = $userFactory->initializeUsers($keyword, $category, $updown, $gender, $role, $subjects);
         $subjects = Subjects::all();
+        // dd($subjects);
         return view('authenticated.users.search', compact('users', 'subjects'));
     }
 
     public function userProfile($id){
         $user = User::with('subjects')->findOrFail($id);
         $subject_lists = Subjects::all();
+        // dd($user);
         return view('authenticated.users.profile', compact('user', 'subject_lists'));
     }
 

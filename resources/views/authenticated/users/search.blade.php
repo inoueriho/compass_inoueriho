@@ -45,7 +45,10 @@
       </div>
       <div>
         @if($user->role == 4)
-        <span>選択科目 :</span>
+        <span>選択科目 :
+          @foreach($user->subjects as $subject)
+        <span>{{ $subject->subject }}</span>
+          @endforeach
         @endif
       </div>
     </div>
@@ -91,6 +94,9 @@
           </div>
           <div class="selected_engineer">
             <label>選択科目</label>
+            <span>国語</span><input type="radio" name="subjects" value="1" form="userSearchRequest">
+            <span>英語</span><input type="radio" name="subjects" value="2" form="userSearchRequest">
+            <span>数学</span><input type="radio" name="subjects" value="3" form="userSearchRequest">
           </div>
         </div>
       </div>
