@@ -69,7 +69,9 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('/unlike/post/{id}', 'PostsController@postUnLike')->name('post.unlike');
         });
         Route::namespace('Users')->group(function(){
+            // ユーザー検索画面表示
             Route::get('/show/users', 'UsersController@showUsers')->name('user.show');
+            // ユーザープロフィール画面
             Route::get('/user/profile/{id}', 'UsersController@userProfile')->name('user.profile');
             Route::post('/user/profile/edit', 'UsersController@userEdit')->name('user.edit');
         });
