@@ -49,11 +49,14 @@
           <p class="validation_message">サブカテゴリーは必ず入力してください。</p>
           <p class="m-0">サブカテゴリー</p>
           <!-- 登録されているメインカテゴリーから選択する -->
-          <select class="w-100" form="mainCategoryRequest" name="main_category_id">
+          <select type="text" class="w-100" form="mainCategoryId" name="main_category_id">
             @foreach($main_categories as $main_category)
             <option label="{{ $main_category->main_category }}"></option>
             @endforeach
           </select>
+          <form action="{{ route('sub.category.create') }}" method="post" id="mainCategoryId">
+            {{ csrf_field() }}
+          </form>
           <!-- サブカテゴリーの入力 -->
           <input type="text" class="w-100" name="sub_category_name" form="subCategoryRequest">
           <form action="{{ route('sub.category.create') }}" method="post" id="subCategoryRequest">{{ csrf_field() }}</form>
