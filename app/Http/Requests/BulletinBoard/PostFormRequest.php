@@ -38,7 +38,7 @@ class PostFormRequest extends FormRequest
             'post_body' => 'min:10|max:500',
             'comment' => 'string|max:250',
             // 'main_category_id' => 'required | in:1,2',
-            // 'sub_category' => 'string|max:100|unique:sub_category'
+            // 'sub_category' => 'string|max:100|unique:sub_categories,sub_category'
         ];
     }
 

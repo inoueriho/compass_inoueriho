@@ -17,10 +17,11 @@ class PostsController extends Controller
 {
     public function show(Request $request){
         $posts = Post::with('user', 'postComments')->get();
-        $categories = MainCategory::get();
+        $categories = MainCategory::with('subCategories')->get();
         $like = new Like;
         $post_comment = new PostComment;
         $post_id = PostComment::get();
+        // dd($categories);
         // dd($post_id);
         if(!empty($request->keyword)){
             $posts = Post::with('user', 'postComments')
@@ -48,21 +49,29 @@ class PostsController extends Controller
     public function postInput(){
         $main_categories = MainCategory::get();
         $sub_categories = SubCategory::get();
+        // dd($sub_categories);
         return view('authenticated.bulletinboard.post_create', compact('main_categories', 'sub_categories'));
     }
 
     public function postCreate(PostFormRequest $request){
                              //↑ここにバリデーション記載しているページ記載
+        $sub_category = $request->post_category_id;
+        // dd($sub_category);
         $post = Post::create([
+            'post_category_id' => SubCategory::get(),
             'user_id' => Auth::id(),
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
+        // dd($post);
         // $validated = $request->validate([
         //     'post_category_id' => 'required | in_array:sub_categories',
         //     'post_title' => 'required | string | max:100',
         //     'post_body' => 'required | string | max:5000'
         // ]);
+        $post = Post::findOrFail($post->id);
+        $post->subCategories()->attach($sub_category);
+        // postにsubCategoriesの$sub_categoryを紐づける
         return redirect()->route('post.show');
     }
 
@@ -85,9 +94,9 @@ class PostsController extends Controller
         MainCategory::create(['main_category' => $request->main_category_name]);
         return redirect()->route('post.input');
     }
-    public function subCategoryCreate(Request $request){
+    public function subCategoryCreate(PostFormRequest $request){
         $validated = $request->validate([
-            'sub_category' => 'string|max:100|unique:sub_category'
+            'sub_category_name' => 'string|max:100|unique:sub_categories,sub_category'
         ]);
         $main_categories = MainCategory::get();
         // dd($main_categories);
@@ -96,7 +105,7 @@ class PostsController extends Controller
             'main_category_id' => $request->main_category_id,
             'sub_category' => $request->sub_category_name
         ]);
-        return redirect()->route('post.detail');
+        return redirect()->route('post.input');
     }
 
     public function commentCreate(PostFormRequest $request){

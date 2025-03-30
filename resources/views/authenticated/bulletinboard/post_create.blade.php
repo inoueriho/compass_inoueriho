@@ -8,8 +8,10 @@
       <select class="w-100" form="postCreate" name="post_category_id">
         @foreach($main_categories as $main_category)
         <optgroup label="{{ $main_category->main_category }}"></optgroup>
+        @endforeach
         <!-- サブカテゴリー表示 -->
-        </optgroup>
+        @foreach($sub_categories as $sub_category)
+        <option label="{{ $sub_category->sub_category }}" value="{{$sub_category->id}}"></option>
         @endforeach
       </select>
     </div>
@@ -48,15 +50,13 @@
        <div class="sub_category">
           <p class="validation_message">サブカテゴリーは必ず入力してください。</p>
           <p class="m-0">サブカテゴリー</p>
+          @if($errors->has('sub_category_name')) <span class="text-danger">{{ $errors->first('sub_category_name') }}</span> @endif
           <!-- 登録されているメインカテゴリーから選択する -->
-          <select type="text" class="w-100" form="mainCategoryId" name="main_category_id">
+          <select type="text" class="w-100" form="subCategoryRequest" name="main_category_id">
             @foreach($main_categories as $main_category)
-            <option label="{{ $main_category->main_category }}"></option>
+            <option label="{{ $main_category->main_category }}" value="{{$main_category->id}}"></option>
             @endforeach
           </select>
-          <form action="{{ route('sub.category.create') }}" method="post" id="mainCategoryId">
-            {{ csrf_field() }}
-          </form>
           <!-- サブカテゴリーの入力 -->
           <input type="text" class="w-100" name="sub_category_name" form="subCategoryRequest">
           <form action="{{ route('sub.category.create') }}" method="post" id="subCategoryRequest">{{ csrf_field() }}</form>

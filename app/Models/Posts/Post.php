@@ -5,6 +5,7 @@ namespace App\Models\Posts;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Posts\Like;
 use App\Models\Posts\PostComment;
+use App\Models\Categories\SubCategory;
 use Auth;
 
 class Post extends Model
@@ -23,6 +24,8 @@ class Post extends Model
     }
     public function subCategories(){
         // リレーションの定義
+        return $this->belongsToMany(SubCategory::class,'post_sub_categories','post_id','sub_category_id');
+                                              //'多対多のための中間テーブル',
     }
 
     // postCommentsとのリレーション　postsから見ると一つの投稿に複数コメントつくため1対多のリレーション

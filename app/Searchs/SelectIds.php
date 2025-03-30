@@ -17,17 +17,24 @@ class SelectIds implements DisplayUsers{
     }else{
       $role = array($role);
     }
+    // if(is_null($subjects)){
+    //   $subjects = ['1', '2', '3'];
+    // }else{
+    //   $subjects = array($subjects);
+    // }
 
     if(is_null($keyword)){
       $users = User::with('subjects')
       ->whereIn('sex', $gender)
       ->whereIn('role', $role)
+      ->whereIn('subjects', $subjects)
       ->orderBy('id', $updown)->get();
     }else{
       $users = User::with('subjects')
       ->where('id', $keyword)
       ->whereIn('sex', $gender)
       ->whereIn('role', $role)
+      ->whereIn('subjects', $subjects)
       ->orderBy('id', $updown)->get();
     }
     return $users;

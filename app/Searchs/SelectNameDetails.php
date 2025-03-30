@@ -17,6 +17,11 @@ class SelectNameDetails implements DisplayUsers{
     }else{
       $role = array($role);
     }
+    // if(is_null($subjects)){
+    //   $subjects = ['1', '2', '3'];
+    // }else{
+    //   $subjects = array($subjects);
+    // }
     $users = User::with('subjects')
     // キーワード検索（キーワードに入れた文字が名前に含まれてたら検索結果にでる）
     ->where(function($q) use ($keyword){
@@ -34,7 +39,8 @@ class SelectNameDetails implements DisplayUsers{
     // 選択科目検索（チェックボックスで選んだ教科を選択している人は検索結果にでる）
     // whereHasでリレション先のテーブルの条件で検索する　
     ->whereHas('subjects', function($q) use ($subjects){
-      $q->where('subject_users.id', $subjects);
+      $q->whereIn('subject_users.subject_id', $subjects);
+      // whereだけだと一つの値でしか絞り込めないのでwhereInにする
     })
     ->orderBy('over_name_kana', $updown)->get();
     return $users;

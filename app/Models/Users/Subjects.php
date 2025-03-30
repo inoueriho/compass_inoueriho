@@ -16,7 +16,8 @@ class Subjects extends Model
     ];
 
     public function users(){
-        return $this->belongsToMany(User::class,'subject_users','user_id','subject_id');// リレーションの定義
+        return $this->belongsToMany(User::class,'subject_users','subject_id','user_id');// リレーションの定義
                                               //'多対多のための中間テーブル',
+                                            //   'subject_id'と'user_id'が逆になると逆に登録されてしまう。
     }
 }
