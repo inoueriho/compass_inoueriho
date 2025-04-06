@@ -21,6 +21,8 @@ class PostsController extends Controller
         $like = new Like;
         $post_comment = new PostComment;
         $post_id = PostComment::get();
+        // $sub_categories = SubCategory::get();
+        // dd($sub_categories);
         // dd($categories);
         // dd($post_id);
         if(!empty($request->keyword)){

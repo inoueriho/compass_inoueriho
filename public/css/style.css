@@ -17,8 +17,13 @@ li {
 }
 
 /* ログイン画面 */
-.atlas-logo {
-  display: block;
+.border {
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.4);
+}
+
+.atlas-logo img {
+  width: 50%;
 }
 
 /* 新規登録画面 */
@@ -188,6 +193,10 @@ li {
 
 .edit-modal-open {
   cursor: pointer;
+  background-color: #007bFF;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 .modal-inner-body textarea {
@@ -197,6 +206,14 @@ li {
 
 .edit-modal-btn {
   justify-content: space-between;
+}
+
+.delete-btn {
+  cursor: pointer;
+  background-color: #dc3545;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 /* 掲示板 コメント */
