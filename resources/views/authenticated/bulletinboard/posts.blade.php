@@ -41,7 +41,13 @@
         @foreach($categories as $category)
         <li class="main_categories" category_id="{{ $category->id }}">
           <span>{{ $category->main_category }}<span>
-
+            <ul>
+              @foreach($category->subCategories as $sub_category)
+              <li class="sub_categories" >
+              <span>{{$sub_category->sub_category}}</span>
+              </li>
+              @endforeach
+            </ul>
         </li>
         @endforeach
       </ul>

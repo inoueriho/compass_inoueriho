@@ -18,6 +18,13 @@ class PostsController extends Controller
     public function show(Request $request){
         $posts = Post::with('user', 'postComments')->get();
         $categories = MainCategory::with('subCategories')->get();
+        // $categories = MainCategory::all();
+        // $sub_category = SubCategory::query()->whereIn('main_category_id',$categories->pick('id')->toArray())->get();
+        // $categories->map(function (MainCategory $category) use ($sub_category) {
+        //     $subs = $sub_category->where('main_category_id', $category->id);
+        //     $category->setAttribute('sub_category', $subs);
+        //     return $category;
+        // });
         $like = new Like;
         $post_comment = new PostComment;
         $post_id = PostComment::get();
