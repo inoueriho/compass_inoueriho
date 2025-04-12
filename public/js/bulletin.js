@@ -5,6 +5,7 @@ $(function () {
   });
 
   $(document).on('click', '.like_btn', function (e) {
+    //↓ボタンが押されてもリロードされたり、他の画面に推移するのを防ぐ
     e.preventDefault();
     $(this).addClass('un_like_btn');
     $(this).removeClass('like_btn');
@@ -48,7 +49,7 @@ $(function () {
     });
   });
 
-  $('.edit-modal-open').on('click',function(){
+  $('.edit-modal-open').on('click', function () {
     $('.js-modal').fadeIn();
     var post_title = $(this).attr('post_title');
     var post_body = $(this).attr('post_body');

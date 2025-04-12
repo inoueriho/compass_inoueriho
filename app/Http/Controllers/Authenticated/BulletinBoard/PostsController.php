@@ -152,9 +152,10 @@ class PostsController extends Controller
 
         $like->like_user_id = $user_id;
         $like->like_post_id = $post_id;
+        $like->likes_count +=1;
         $like->save();
 
-        return response()->json();
+        return response()->json(['success' => true, 'likes_count' => $post->likes_count]);
     }
 
     public function postUnLike(Request $request){
