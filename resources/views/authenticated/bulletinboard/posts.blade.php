@@ -16,13 +16,23 @@
             {{ $post->commentCounts($post->id) }}
             </p>
           </div>
-          <div>
+          <!-- <div>
             @if(Auth::user()->is_Like($post->id))
             <p class="m-0"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i>{{ $like->likeCounts($post->id) }}</p>
             @else
             <p class="m-0"><i class="fas fa-heart like_btn" post_id="{{ $post->id }}"></i>{{ $like->likeCounts($post->id) }}</p>
             @endif
-          </div>
+          </div> -->
+          <p class="m-0">
+            @if(Auth::user()->is_Like($post->id))
+            <!-- text-dangerでいろを赤くする -->
+            <i class="fas fa-heart un_like_btn text-danger" post_id="{{ $post->id }}"></i>
+            @else
+            <i class="fas fa-heart like_btn" post_id="{{ $post->id }}"></i>
+            @endif
+            <span class="like_counts{{ $post->id }}">{{ $post->likeCounts() }}</span>
+          </p>
+
         </div>
       </div>
     </div>

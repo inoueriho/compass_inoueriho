@@ -18,9 +18,13 @@ class Like extends Model
     }
 
     // likesテーブルとpostsテーブルのリレーション
+    // public function post(){
+    //     return $this->belongTo('App\Models\posts\post');
+    // }
     public function post(){
-        return $this->belongTo('App\Models\posts\post');
+        return $this->belongsTo(Post::class, 'like_post_id');
     }
+
 
     // いいねしているかの判断
     public function is_Like(){

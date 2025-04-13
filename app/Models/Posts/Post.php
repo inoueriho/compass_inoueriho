@@ -46,8 +46,12 @@ class Post extends Model
     }
 
     //likeとのリレーションの定義　postsから見ると一つの投稿に複数いいねつくため１対多のリレーション
+    // Laravel はデフォで `post_id` を使う！
+    // public function likes(){
+    //     return $this->hasMany('App\Models\posts\like');
+    // }
     public function likes(){
-        return $this->hasMany('App\Models\posts\like');
+        return $this->hasMany(Like::class, 'like_post_id');
     }
     public function likeCounts(){
         return $this->likes()->count();

@@ -158,7 +158,8 @@ class PostsController extends Controller
         // 最新のいいね数を取得
         $likes_count = Like::where('like_post_id',$post_id)->count();
 
-        return response()->json(['success' => true, 'likes_count' => $likes_count]);
+        // return response()->json(['success' => true, 'likes_count' => $likes_count]);
+        return response()->json(['likes_count' => Like::where('like_post_id', $post_id)->count()]);
     }
 
     public function postUnLike(Request $request){
@@ -172,6 +173,8 @@ class PostsController extends Controller
              ->delete();
         $likes_count = Like::where('like_post_id',$post_id)->count();
 
-        return response()->json(['success' => true, 'likes_count' => $likes_count]);
+        // return response()->json(['success' => true, 'likes_count' => $likes_count]);
+        return response()->json(['likes_count' => Like::where('like_post_id', $post_id)->count()]);
+
     }
 }

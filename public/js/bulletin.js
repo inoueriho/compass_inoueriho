@@ -20,16 +20,20 @@ $(function () {
         post_id: $(this).attr('post_id'),
       },
     }).done(function (res) {
-      console.log(res);
-      $('.like_counts' + post_id).text(countInt + 1);
-    }).fail(function (res) {
-      console.log('fail');
+      $('.like_counts' + post_id).text(res.likes_count);
     });
+
+    //   .done(function (res) {
+    //   console.log(res);
+    //   $('.like_counts' + post_id).text(countInt + 1);
+    // }).fail(function (res) {
+    //   console.log('fail');
+    // });
   });
 
   $(document).on('click', '.un_like_btn', function (e) {
     e.preventDefault();
-    $(this).removeClass('un_like_btn');
+    $(this).removeClass('un_like_btn text-danger'); // text-dangerを外すことで黒に戻す
     $(this).addClass('like_btn');
     var post_id = $(this).attr('post_id');
     var count = $('.like_counts' + post_id).text();
@@ -43,10 +47,13 @@ $(function () {
         post_id: $(this).attr('post_id'),
       },
     }).done(function (res) {
-      $('.like_counts' + post_id).text(countInt - 1);
-    }).fail(function () {
-
+      $('.like_counts' + post_id).text(res.likes_count);
     });
+    //   .done(function (res) {
+    //   $('.like_counts' + post_id).text(countInt - 1);
+    // }).fail(function () {
+
+    // });
   });
 
   $('.edit-modal-open').on('click', function () {
