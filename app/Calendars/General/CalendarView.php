@@ -61,11 +61,11 @@ class CalendarView{
           $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
           // ここでそれぞれ123をラベルに変換している
           if($reservePart == 1){
-            $reservePart = "リモ1部";
+            $reservePartLabel = "リモ1部";
           }else if($reservePart == 2){
-            $reservePart = "リモ2部";
+            $reservePartLabel = "リモ2部";
           }else if($reservePart == 3){
-            $reservePart = "リモ3部";
+            $reservePartLabel = "リモ3部";
           }
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
             // 過去日だったら表示なし
@@ -73,7 +73,15 @@ class CalendarView{
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }else{
             // 未来日だったら予約取り消しボタン表示
-            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reservePart .'</button>';
+            // $html[] = '<button type="submit" class="btn btn-danger cancel-modal-open p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reservePart .'</button>';
+            // $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+            $reserveData = $day->authReserveDate($day->everyDay())->first();
+            $reservePart = $reserveData->setting_part;
+            $reserveReserve = $reserveData->setting_reserve;
+            // 上に定義してから使う$reserveData/$reservePart
+            // モーダル操作時にフォーム送信されないようにtypeはbutton
+            // 予約日や時間を取得するために属性追加(setting_reserve/setting_part)
+            $html[] = '<button type="button" class="btn btn-danger cancel-modal-open p-0 w-75" name="delete_date" style="font-size:12px" value="'. $reserveData->setting_reserve .'" setting_reserve="'. $reserveData->setting_reserve .'" setting_part="'. $reserveData->setting_part .'">'. $reservePartLabel . '</button>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }
         }else{

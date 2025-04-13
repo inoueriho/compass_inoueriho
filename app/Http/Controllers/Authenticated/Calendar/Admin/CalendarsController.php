@@ -28,7 +28,18 @@ class CalendarsController extends Controller
         $calendar = new CalendarSettingView(time());
         return view('authenticated.calendar.admin.reserve_setting', compact('calendar'));
     }
-
+    // public function delete(Request $request){
+    //     $user_id = Auth::id();
+    //     $id = $request->input('reserve-setting-id');
+    //     // ReserveSettings::findOrFail($id)->delete();
+    //     // 本人の予約かどうか確認してから削除
+    //     $reserve = ReserveSettings::where('id', $id)->where('user_id', $user_id)->first();
+    //    if ($reserve) {
+    //     $reserve->delete();
+    //     }
+    //     // user_idが必要になるから渡す
+    //     return redirect()->route('calendar.general.show', ['user_id' => $user_id]);
+    // }
     public function updateSettings(Request $request){
         $reserveDays = $request->input('reserve_day');
         foreach($reserveDays as $day => $parts){

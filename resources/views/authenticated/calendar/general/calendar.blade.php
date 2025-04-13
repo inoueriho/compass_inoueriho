@@ -16,4 +16,25 @@
     </div>
   </div>
 </div>
+<!-- モーダルの中身 -->
+<div class="modal js-modal">
+  <div class="modal__bg js-modal-close"></div>
+  <div class="modal__content">
+    <form action="{{ route('deleteParts') }}" method="post">
+      <div class="w-100">
+        <div class="modal-inner-cancel w-50 m-auto">
+          <p class="modal-reserve-date">予約日: </p>
+          <p class="modal-reserve-part">時間: </p>
+          <p>上記の予約をキャンセルしてもよろしいですか？</p>
+        </div>
+        <div class="w-50 m-auto edit-modal-btn d-flex">
+          <a class="js-modal-close btn btn-danger d-inline-block" href="">閉じる</a>
+          <input type="hidden" class="cancel-modal-hidden" name="reserve-setting-id" value="">
+          <input type="submit" class="btn btn-primary d-block" value="キャンセル">
+        </div>
+      </div>
+      {{ csrf_field() }}
+    </form>
+  </div>
+</div>
 @endsection

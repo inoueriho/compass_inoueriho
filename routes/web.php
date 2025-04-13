@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::group(['middleware' => ['guest']], function(){
     Route::namespace('Auth')->group(function(){
         Route::get('/register', 'RegisterController@registerView')->name('registerView');
@@ -32,8 +31,11 @@ Route::group(['middleware' => 'auth'], function(){
         Route::namespace('Calendar')->group(function(){
             //スクール予約
             Route::namespace('General')->group(function(){
+                // カレンダー表示
                 Route::get('/calendar/{user_id}', 'CalendarsController@show')->name('calendar.general.show');
+                //
                 Route::post('/reserve/calendar', 'CalendarsController@reserve')->name('reserveParts');
+                //
                 Route::post('/delete/calendar', 'CalendarsController@delete')->name('deleteParts');
             });
             //講師のみ　スクール予約確認・スクール枠登録

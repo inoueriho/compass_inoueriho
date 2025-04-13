@@ -8,6 +8,7 @@ use App\Calendars\General\CalendarView;
 use App\Models\Calendars\ReserveSettings;
 use App\Models\Calendars\Calendar;
 use App\Models\USers\User;
+use App\Models\Calendars\ReserveSettingUser;
 use Auth;
 use DB;
 
@@ -35,4 +36,29 @@ class CalendarsController extends Controller
         }
         return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
     }
+    // public function delete(Request $request){
+    //     $user_id = Auth::id();
+    //     $id = $request->input('reserve-setting-id');
+    //     dd($id);
+    //     // ReserveSettings::findOrFail($id)->delete();
+    //     // 本人の予約かどうか確認してから削除
+    //     $reserve = ReserveSettings::where('id', $id)->where('user_id', $user_id)->first();
+    //    if ($reserve) {
+    //     $reserve->delete();
+    //     }
+    //     // user_idが必要になるから渡す
+    //     return redirect()->route('calendar.general.show', ['user_id' => $user_id]);
+    // }
+    public function delete(Request $request){
+    $user_id = Auth::id();
+    $id = $request->input('reserve-setting-id');
+    // ReserveSettingUser テーブルから予約を探す
+    $reserve = ReserveSettingUser::where('reserve_setting_id', $id)
+                ->where('user_id', $user_id)->first();
+    if ($reserve) {
+        $reserve->delete();
+    }
+    return redirect()->route('calendar.general.show', ['user_id' => $user_id]);
+}
+
 }

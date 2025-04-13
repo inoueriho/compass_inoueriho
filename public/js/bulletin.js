@@ -70,5 +70,25 @@ $(function () {
     $('.js-modal').fadeOut();
     return false;
   });
-
+  // 予約キャンセルモーダル
+  $('.cancel-modal-open').on('click', function () {
+    $('.js-modal').fadeIn();
+    var setting_reserve = $(this).attr('setting_reserve');
+    var setting_part = $(this).attr('setting_part');
+    $('.modal-reserve-date').text('予約日: ' + setting_reserve);
+    var partLabel = '';
+    if (setting_part == 1) {
+      partLabel = 'リモ1部';
+    } else if (setting_part == 2) {
+      partLabel = 'リモ2部';
+    } else if (setting_part == 3) {
+      partLabel = 'リモ3部';
+    }
+    $('.modal-reserve-part').text('時間: ' + partLabel);
+    $('.cancel-modal-hidden').val(setting_reserve);
+    return false;
+  });
+  $('.cancel-modal-close').on('click', function () {
+    $('.js-modal').fadeOut();
+  });
 });
