@@ -16,34 +16,36 @@ use Auth;
 class PostsController extends Controller
 {
     public function show(Request $request){
+        // dd($request->all());
         $posts = Post::with('user', 'postComments')->get();
         $categories = MainCategory::with('subCategories')->get();
-        // $categories = MainCategory::all();
-        // $sub_category = SubCategory::query()->whereIn('main_category_id',$categories->pick('id')->toArray())->get();
-        // $categories->map(function (MainCategory $category) use ($sub_category) {
-        //     $subs = $sub_category->where('main_category_id', $category->id);
-        //     $category->setAttribute('sub_category', $subs);
-        //     return $category;
-        // });
         $like = new Like;
         $post_comment = new PostComment;
         $post_id = PostComment::get();
-        // $sub_categories = SubCategory::get();
-        // dd($sub_categories);
         // dd($categories);
         // dd($post_id);
         if(!empty($request->keyword)){
             $posts = Post::with('user', 'postComments')
             ->where('post_title', 'like', '%'.$request->keyword.'%')
             ->orWhere('post', 'like', '%'.$request->keyword.'%')->get();
-        }else if($request->category_word){
-            $sub_category = $request->category_word;
-            $posts = Post::with('user', 'postComments')->get();
+        }else if($request->sub_category_posts){
+            $sub_category_id = $request->sub_category_posts;
+            // whereHasを使うことで、中間テーブルを介す
+            // subCategoriesはPost.phpで書いているリレーション名
+            // sub_category_idはpost_sub_categoriesテーブルのカラム名
+            // function($query)でリレーション先の条件を定義する
+            $posts = Post::with('user', 'postComments')->whereHas('subCategories', function($query) use ($sub_category_id) {
+            $query->where('sub_category_id', $sub_category_id);})->get();
+            // サブカテゴリーに該当するpostsを表示する
+            // リクエストを送っただけで絞り込めてない
+            // $sub_categories = $request->sub_category_posts;
+            // $posts = Post::with('user', 'postComments')->get();
         }else if($request->like_posts){
+            // ログインユーザーがいいねしてたら表示する
             $likes = Auth::user()->likePostId()->get('like_post_id');
-            $posts = Post::with('user', 'postComments')
-            ->whereIn('id', $likes)->get();
+            $posts = Post::with('user', 'postComments')->whereIn('id', $likes)->get();
         }else if($request->my_posts){
+            // ログインユーザーが投稿してたら表示する
             $posts = Post::with('user', 'postComments')
             ->where('user_id', Auth::id())->get();
         }
@@ -147,15 +149,16 @@ class PostsController extends Controller
     public function postLike(Request $request){
         $user_id = Auth::id();
         $post_id = $request->post_id;
-
+        // いいね登録
         $like = new Like;
-
         $like->like_user_id = $user_id;
         $like->like_post_id = $post_id;
-        $like->likes_count +=1;
         $like->save();
 
-        return response()->json(['success' => true, 'likes_count' => $post->likes_count]);
+        // 最新のいいね数を取得
+        $likes_count = Like::where('like_post_id',$post_id)->count();
+
+        return response()->json(['success' => true, 'likes_count' => $likes_count]);
     }
 
     public function postUnLike(Request $request){
@@ -164,10 +167,11 @@ class PostsController extends Controller
 
         $like = new Like;
 
-        $like->where('like_user_id', $user_id)
+        Like::where('like_user_id', $user_id)
              ->where('like_post_id', $post_id)
              ->delete();
+        $likes_count = Like::where('like_post_id',$post_id)->count();
 
-        return response()->json();
+        return response()->json(['success' => true, 'likes_count' => $likes_count]);
     }
 }

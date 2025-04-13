@@ -44,7 +44,9 @@
             <ul>
               @foreach($category->subCategories as $sub_category)
               <li class="sub_categories" >
-              <span>{{$sub_category->sub_category}}</span>
+                <button type="hidden" name="sub_category_posts" class="category_btn" value="{{$sub_category->id}}" form="postSearchRequest">
+                  {{$sub_category->sub_category}}
+                </button>
               </li>
               @endforeach
             </ul>

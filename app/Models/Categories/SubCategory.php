@@ -23,4 +23,8 @@ class SubCategory extends Model
         // リレーションの定義
                 return $this->belongsToMany(Post::class,'post_sub_categories','sub_category_id','post_id',);
     }
+    // サブカテゴリーに該当する投稿
+    // public function subCategoryPost(){
+    //     return Post::where('sub_category_id', 'sub_category_id');
+    // }
 }

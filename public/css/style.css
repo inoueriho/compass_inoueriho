@@ -127,9 +127,9 @@ li {
 }
 
 /* 掲示板 */
-.sub_categories {
-  display: none;
-}
+/* .sub_categories span {
+  background-color: #9E9E9E;
+} */
 
 .post_create_area {
   background: #FFF;

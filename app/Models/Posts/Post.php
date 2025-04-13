@@ -27,6 +27,9 @@ class Post extends Model
         return $this->belongsToMany(SubCategory::class,'post_sub_categories','post_id','sub_category_id');
                                               //'多対多のための中間テーブル',
     }
+    // public function subCategoryPost(){
+    //     return Post::where('sub_category_id', 'sub_category_id');
+    // }
 
     // postCommentsとのリレーション　postsから見ると一つの投稿に複数コメントつくため1対多のリレーション
     public function postComments(){
@@ -45,6 +48,9 @@ class Post extends Model
     //likeとのリレーションの定義　postsから見ると一つの投稿に複数いいねつくため１対多のリレーション
     public function likes(){
         return $this->hasMany('App\Models\posts\like');
+    }
+    public function likeCounts(){
+        return $this->likes()->count();
     }
 //     public function is_like_by_auth_user()
 //   {
