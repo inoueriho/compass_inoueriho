@@ -1,5 +1,5 @@
 @extends('layouts.sidebar')
-
+<!-- スクール予約詳細確認 -->
 @section('content')
 <div class="vh-100 d-flex" style="align-items:center; justify-content:center;">
   <div class="w-50 m-auto h-75">

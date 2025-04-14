@@ -13,7 +13,7 @@ class CalendarView{
   public function getTitle(){
     return $this->carbon->format('Y年n月');
   }
-
+// スクール予約確認の中身
   public function render(){
     $html = [];
     $html[] = '<div class="calendar text-center">';

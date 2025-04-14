@@ -11,17 +11,20 @@ use App\Models\USers\User;
 use App\Models\Calendars\ReserveSettingUser;
 use Auth;
 use DB;
-
+// 生徒のスクール予約画面
 class CalendarsController extends Controller
 {
+    // カレンダー表示
     public function show(){
         $calendar = new CalendarView(time());
         return view('authenticated.calendar.general.calendar', compact('calendar'));
     }
 
+    // 予約機能
     public function reserve(Request $request){
         DB::beginTransaction();
         try{
+            // dd($request);
             $getPart = $request->getPart;
             $getDate = $request->getData;
             $reserveDays = array_filter(array_combine($getDate, $getPart));
@@ -49,12 +52,17 @@ class CalendarsController extends Controller
     //     // user_idが必要になるから渡す
     //     return redirect()->route('calendar.general.show', ['user_id' => $user_id]);
     // }
+    // 削除機能
     public function delete(Request $request){
     $user_id = Auth::id();
     $id = $request->input('reserve-setting-id');
+    // dd($id);
+    // dd($request->all());
     // ReserveSettingUser テーブルから予約を探す
-    $reserve = ReserveSettingUser::where('reserve_setting_id', $id)
-                ->where('user_id', $user_id)->first();
+    $reserve = ReserveSettingUser::where('user_id', auth()->id())
+    ->where('reserve_setting_id', $id)
+    ->first();
+    //  ↓上で取ってきた値が入る
     if ($reserve) {
         $reserve->delete();
     }

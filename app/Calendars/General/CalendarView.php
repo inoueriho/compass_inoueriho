@@ -37,6 +37,7 @@ class CalendarView{
 
       $days = $week->getDays();
       foreach($days as $day){
+        $days = $week->getDays();
         // 過去日を判定して色を変える処理
         // 現在の月の1日を取得
         $startDay = $this->carbon->copy()->format("Y-m-01");
@@ -81,8 +82,11 @@ class CalendarView{
             // 上に定義してから使う$reserveData/$reservePart
             // モーダル操作時にフォーム送信されないようにtypeはbutton
             // 予約日や時間を取得するために属性追加(setting_reserve/setting_part)
-            $html[] = '<button type="button" class="btn btn-danger cancel-modal-open p-0 w-75" name="delete_date" style="font-size:12px" value="'. $reserveData->setting_reserve .'" setting_reserve="'. $reserveData->setting_reserve .'" setting_part="'. $reserveData->setting_part .'">'. $reservePartLabel . '</button>';
-            $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+            $html[] = '<button type="button" class="btn btn-danger cancel-modal-open p-0 w-75" name="delete_date" style="font-size:12px"
+            data-id="'. $reserveData->id .'"
+            setting_reserve="'. $reserveData->setting_reserve .'"
+            setting_part="'. $reserveData->setting_part .'">' . $reservePartLabel .'</button>';
+            $html[] = '<input type="hidden" name="getPart[]" value="" form="deleteParts">';
           }
         }else{
           // 予約がない日にプルダウン表示（過去か未来か判断してないから、予約がなければプルダウンが表示されちゃう）

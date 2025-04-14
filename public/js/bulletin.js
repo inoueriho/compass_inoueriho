@@ -75,6 +75,7 @@ $(function () {
     $('.js-modal').fadeIn();
     var setting_reserve = $(this).attr('setting_reserve');
     var setting_part = $(this).attr('setting_part');
+    var reserveId = $(this).data('id');
     $('.modal-reserve-date').text('予約日: ' + setting_reserve);
     var partLabel = '';
     if (setting_part == 1) {
@@ -86,6 +87,7 @@ $(function () {
     }
     $('.modal-reserve-part').text('時間: ' + partLabel);
     $('.cancel-modal-hidden').val(setting_reserve);
+    $('.cancel-modal-hidden').val(reserveId);
     return false;
   });
   $('.cancel-modal-close').on('click', function () {
