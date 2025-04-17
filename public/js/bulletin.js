@@ -86,8 +86,8 @@ $(function () {
       partLabel = 'リモ3部';
     }
     $('.modal-reserve-part').text('時間: ' + partLabel);
-    $('.cancel-modal-hidden').val(setting_reserve);
-    $('.cancel-modal-hidden').val(reserveId);
+    $('.cancel-reserve-id').val(reserveId);
+    $('.cancel-reserve-date').val(setting_reserve);
     return false;
   });
   $('.cancel-modal-close').on('click', function () {

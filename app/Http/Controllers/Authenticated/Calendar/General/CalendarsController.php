@@ -28,6 +28,8 @@ class CalendarsController extends Controller
             $getPart = $request->getPart;
             $getDate = $request->getData;
             $reserveDays = array_filter(array_combine($getDate, $getPart));
+            // $reserveId = $request->input('reserve_id');
+            // $reserveDate = $request->input('reserve_date');
             foreach($reserveDays as $key => $value){
                 $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first();
                 $reserve_settings->decrement('limit_users');
@@ -54,6 +56,8 @@ class CalendarsController extends Controller
     // }
     // 削除機能
     public function delete(Request $request){
+        // $reserveId = $request->input('reserve_id');
+        // $reserveDate = $request->input('reserve_date');
     $user_id = Auth::id();
     $id = $request->input('reserve-setting-id');
     // dd($id);

@@ -13,6 +13,8 @@
     </div>
     <div class="text-right w-75 m-auto">
       <input type="submit" class="btn btn-primary" value="予約する" form="reserveParts" onclick="return confirm('予約してよろしいですか？')">
+      <!-- <input type="hidden" name="getDate[]" value="'. $day->everyDay() .'" form="reserveParts">
+      <input type="hidden" name="getPart[]" value="'. $reservePart .'" form="reserveParts"> -->
     </div>
   </div>
 </div>
@@ -31,6 +33,8 @@
           <a class="js-modal-close btn btn-danger d-inline-block" href="">閉じる</a>
           <input type="hidden" class="cancel-modal-hidden" name="reserve-setting-id" value="">
           <input type="submit" class="btn btn-primary d-block" value="キャンセル">
+          <!-- <input type="hidden" class="cancel-reserve-id" name="reserve_id" value="">
+          <input type="hidden" class="cancel-reserve-date" name="reserve_date" value=""> -->
         </div>
       </div>
       {{ csrf_field() }}
