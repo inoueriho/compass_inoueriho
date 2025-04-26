@@ -37,8 +37,8 @@ class PostFormRequest extends FormRequest
             'post_title' => 'min:4|max:50',
             'post_body' => 'min:10|max:500',
             'comment' => 'string|max:250',
-            // 'main_category_id' => 'required | in:1,2',
-            // 'sub_category' => 'string|max:100|unique:sub_categories,sub_category'
+            'main_category_name' => 'string|max:100|unique:main_categories,main_category',
+            'sub_category_name' => 'string|max:100|unique:sub_categories,sub_category'
         ];
     }
 
@@ -50,9 +50,12 @@ class PostFormRequest extends FormRequest
             'post_body.max' => '最大文字数は500文字です。',
             'comment.string' => 'コメントは必須項目です。',
             'comment.max' => '最大文字数は250文字です。',
-            // 'main_category_id.required' => 'メインカテゴリーを選択してください。',
-            // 'sub_category.max' => '最大文字数は100文字です。',
-            // 'sub_category.unique' => 'すでに登録されているサブカテゴリーです。'
+            'main_category_name.string' => 'メインカテゴリーは必須入力です。',
+            'main_category_name.max' => '最大文字数は100文字です。',
+            'main_category_name.unique' => 'すでに登録されているメインカテゴリーです。',
+            'sub_category_name.string' => 'サブカテゴリーは必須入力です。',
+            'sub_category_name.max' => '最大文字数は100文字です。',
+            'sub_category_name.unique' => 'すでに登録されているサブカテゴリーです。'
         ];
     }
 }

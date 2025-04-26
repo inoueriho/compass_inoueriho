@@ -71,6 +71,8 @@ class CalendarView{
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
             // 過去日だったら表示なし
             $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px"></p>';
+            $reserveData = $day->authReserveDate($day->everyDay())->first();
+            $html[] = $reserveData->setting_part . '部参加';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }else{
             // 未来日だったら予約取り消しボタン表示
