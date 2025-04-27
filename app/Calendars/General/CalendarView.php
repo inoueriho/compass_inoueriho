@@ -36,6 +36,7 @@ class CalendarView{
       $html[] = '<tr class="'.$week->getClassName().'">';
 
       $days = $week->getDays();
+      // dd($days);
       foreach($days as $day){
         $days = $week->getDays();
         // 過去日を判定して色を変える処理
@@ -69,15 +70,12 @@ class CalendarView{
             $reservePartLabel = "リモ3部";
           }
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-            // 過去日だったら表示なし
+            // 過去日なら参加表示
             $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px"></p>';
             $reserveData = $day->authReserveDate($day->everyDay())->first();
             $html[] = $reserveData->setting_part . '部参加';
-            $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }else{
             // 未来日だったら予約取り消しボタン表示
-            // $html[] = '<button type="submit" class="btn btn-danger cancel-modal-open p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reservePart .'</button>';
-            // $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
             $reserveData = $day->authReserveDate($day->everyDay())->first();
             $reservePart = $reserveData->setting_part;
             $reserveReserve = $reserveData->setting_reserve;
@@ -88,24 +86,24 @@ class CalendarView{
             data-id="'. $reserveData->id .'"
             setting_reserve="'. $reserveData->setting_reserve .'"
             setting_part="'. $reserveData->setting_part .'">' . $reservePartLabel .'</button>';
-            // $html[] = '<input type="hidden" name="getPart[]" value="" form="deleteParts">';
             $html[] = '<input type="hidden" name="getDate[]" value="'. $day->everyDay() .'" form="reserveParts">';
             $html[] = '<input type="hidden" name="getPart[]" value="'. $reservePart .'" form="reserveParts">';
           }
         }else{
-          // 予約がない日にプルダウン表示（過去か未来か判断してないから、予約がなければプルダウンが表示されちゃう）
-          // $html[] = $day->selectPart($day->everyDay());
           // 予約がない日
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
+            // dd($day->everyDay());
           // 過去日だったら → プルダウン表示しない、受付終了
             $html[] = '<p class="m-auto p-0 w-75 text-muted" style="font-size:12px;">受付終了</p>';
             $html[] = '<input type="hidden" name="getDate[]" value="'. $day->everyDay() .'" form="reserveParts">';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+
           }else{
           // 未来日だったら → プルダウン表示
           // selectPartの中身CalenderWeekDay.phpにある
           $html[] = $day->selectPart($day->everyDay());
           $html[] = '<input type="hidden" name="getDate[]" value="'. $day->everyDay() .'" form="reserveParts">';
+          $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }
         }
         $html[] = $day->getDate();

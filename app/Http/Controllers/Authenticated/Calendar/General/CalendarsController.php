@@ -22,38 +22,41 @@ class CalendarsController extends Controller
 
     // 予約機能
     public function reserve(Request $request){
-        DB::beginTransaction();
-        try{
-            // dd($request);
-            $getPart = $request->getPart;
-            $getDate = $request->getData;
-            $reserveDays = array_filter(array_combine($getDate, $getPart));
-            // $reserveId = $request->input('reserve_id');
-            // $reserveDate = $request->input('reserve_date');
-            foreach($reserveDays as $key => $value){
-                $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first();
-                $reserve_settings->decrement('limit_users');
-                $reserve_settings->users()->attach(Auth::id());
-            }
-            DB::commit();
-        }catch(\Exception $e){
-            DB::rollback();
+        // dd($request);
+    DB::beginTransaction();
+    try {
+        $getPart = $request->getPart;
+        $getDate = $request->getDate;
+        // ↓nullの値を除外する
+        $getDate = array_filter($getDate, function($value) {
+            return !is_null($value);
+        });
+        // $getPart = array_filter($getPart, function($value) {
+        //     return !is_null($value);
+        // });
+        // 重複を除外
+        $getDate = array_unique($getDate);
+        // $getPart = array_unique($getPart);
+        dd($getDate, $getPart);
+
+        $reserveDays = array_filter(array_combine($getDate, $getPart));
+        foreach($reserveDays as $key => $value){
+            $reserve_settings = ReserveSettings::where('setting_reserve', $key)
+                                                ->where('setting_part', $value)
+                                                ->first();
+            $reserve_settings->decrement('limit_users');
+            $reserve_settings->users()->attach(Auth::id());
         }
-        return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
+
+        DB::commit();
+    } catch(\Exception $e){
+        DB::rollback();
     }
-    // public function delete(Request $request){
-    //     $user_id = Auth::id();
-    //     $id = $request->input('reserve-setting-id');
-    //     dd($id);
-    //     // ReserveSettings::findOrFail($id)->delete();
-    //     // 本人の予約かどうか確認してから削除
-    //     $reserve = ReserveSettings::where('id', $id)->where('user_id', $user_id)->first();
-    //    if ($reserve) {
-    //     $reserve->delete();
-    //     }
-    //     // user_idが必要になるから渡す
-    //     return redirect()->route('calendar.general.show', ['user_id' => $user_id]);
-    // }
+
+    return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
+}
+
+
     // 削除機能
     public function delete(Request $request){
         // $reserveId = $request->input('reserve_id');
