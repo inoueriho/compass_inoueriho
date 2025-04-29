@@ -39,7 +39,6 @@ li {
 /* サイドバー */
 .sidebar {
   width: 150px;
-  height: 100vh;
   background-color: #03AAD2;
   font-weight: bold;
 }
@@ -130,6 +129,42 @@ li {
 /* .sub_categories span {
   background-color: #9E9E9E;
 } */
+.postpage-btn {
+  height: 30px;
+  background-color: #09A9D2;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.postpage-btn a {
+  color: #FFF;
+}
+
+.search-area {
+  margin-bottom: 20px;
+}
+
+.category_btn-like {
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 0 5px;
+  border: none;
+  background: #E38EAB;
+  color: #FFF;
+  width: 45%;
+  height: 30px;
+}
+
+.category_btn-mine {
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 0 5px;
+  border: none;
+  background: #EBBC5D;
+  color: #FFF;
+  width: 45%;
+  height: 30px;
+}
 
 .post_create_area {
   background: #FFF;
@@ -152,7 +187,7 @@ li {
 }
 
 .post_bottom_area {
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .like_btn,
@@ -171,6 +206,14 @@ li {
 }
 
 /* 掲示板 詳細画面 */
+.post-sub_category {
+  background-color: #03AAD2;
+  border-radius: 5px;
+  color: #FFF;
+  padding: 5px;
+  display: inline-block;
+}
+
 .contributor {
   font-size: 12px;
   color: #999;
@@ -278,8 +321,8 @@ li {
   height: 80vh;
   overflow: scroll;
   padding: 10px;
-  background: #FFF;
-  border-radius: 5px;
+  /* background: #FFF; */
+  /* border-radius: 5px; */
 }
 
 .reserve_users_area span {
@@ -287,8 +330,50 @@ li {
 }
 
 .one_person {
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.4);
+  background-color: #FFF;
   width: 250px;
   height: 250px;
+  margin: 5px;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.one_person .item {
+  color: #999;
+}
+
+.one_person div {
+  margin-bottom: 5px;
+}
+
+.search {
+  margin: 10px 0;
+  color: #2E7CAB;
+}
+
+.free_word {
+  background-color: #E0E5E9;
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  width: 60%;
+  margin-bottom: 10px;
+}
+
+.search-label {
+  margin: 10px 0;
+  color: #2E7CAB;
+}
+
+.search-select {
+  display: block;
+  background-color: #E0E5E9;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 10px;
 }
 
 .search_conditions span {

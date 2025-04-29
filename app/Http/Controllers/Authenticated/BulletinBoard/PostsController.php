@@ -17,7 +17,7 @@ class PostsController extends Controller
 {
     public function show(Request $request){
         // dd($request->all());
-        $posts = Post::with('user', 'postComments')->get();
+        $posts = Post::with('user', 'postComments','subCategories')->get();
         $categories = MainCategory::with('subCategories')->get();
         $like = new Like;
         $post_comment = new PostComment;
@@ -53,19 +53,23 @@ class PostsController extends Controller
     }
 
     public function postDetail($post_id){
-        $post = Post::with('user', 'postComments')->findOrFail($post_id);
+        $post = Post::with('user', 'postComments','subCategories')->findOrFail($post_id);
+        // dd($post);
         return view('authenticated.bulletinboard.post_detail', compact('post'));
     }
 
+    // 投稿画面表示　メインカテゴリーとサブカテゴリーの情報を送ってる
     public function postInput(){
         $main_categories = MainCategory::get();
         $sub_categories = SubCategory::get();
         // dd($sub_categories);
         return view('authenticated.bulletinboard.post_create', compact('main_categories', 'sub_categories'));
+        // compactで変数を渡す
     }
 
     public function postCreate(PostFormRequest $request){
                              //↑ここにバリデーション記載しているページ記載
+        $categories = MainCategory::with('subCategories')->get();
         $sub_category = $request->post_category_id;
         // dd($sub_category);
         $post = Post::create([
@@ -83,6 +87,7 @@ class PostsController extends Controller
         $post = Post::findOrFail($post->id);
         $post->subCategories()->attach($sub_category);
         // postにsubCategoriesの$sub_categoryを紐づける
+        // return view('authenticated.bulletinboard.post_create', compact('categories'));
         return redirect()->route('post.show');
     }
 

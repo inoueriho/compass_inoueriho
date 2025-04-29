@@ -4,10 +4,17 @@
   <div class="w-50 mt-5">
     <div class="m-3 detail_container">
       <div class="p-3">
+        @if($errors->has('post_title')) <p class="text-danger">{{ $errors->first('post_title') }}</p> @endif
+          @if($errors->has('post_body')) <p class="text-danger">{{ $errors->first('post_body') }}</p> @endif
         <div class="detail_inner_head">
-          <p class="validation_message">タイトルは必ず入力してください。</p>
-          <div>
+          <!-- <p class="validation_message">タイトルは必ず入力してください。</p> -->
+          <div class="post-sub_category">
             <!-- カテゴリー名 -->
+             <!-- foreachの記述忘れがちでエラーになるから注意 -->
+              <!-- $post->subCategoriesは「複数のSubCategoryモデル」を持っているので、個別に取り出さないとsub_categoryにアクセスできません。 -->
+             @foreach ($post->subCategories as $subCategory)
+              {{ $subCategory->sub_category }}
+             @endforeach
           </div>
           <!-- ↓ログインユーザーにのみ表示させる -->
           @if(Auth::user()->id == $post->user_id)
@@ -20,8 +27,6 @@
         </div>
 
         <div class="contributor d-flex">
-          @if($errors->has('post_title')) <p class="text-danger">{{ $errors->first('post_title') }}</p> @endif
-          @if($errors->has('post_body')) <p class="text-danger">{{ $errors->first('post_body') }}</p> @endif
           <p>
             <span>{{ $post->user->over_name }}</span>
             <span>{{ $post->user->under_name }}</span>
@@ -51,9 +56,8 @@
   <div class="w-50 p-3">
     <div class="comment_container border m-5">
       <div class="comment_area p-3">
-        <p class="validation_message">コメントは必ず入力してください。</p>
-        <p class="m-0">コメントする</p>
         @if($errors->has('comment')) <p class="text-danger">{{ $errors->first('comment') }}</p> @endif
+        <p class="m-0">コメントする</p>
         <textarea class="w-100" name="comment" form="commentRequest"></textarea>
         <input type="hidden" name="post_id" form="commentRequest" value="{{ $post->id }}">
         <input type="submit" class="btn btn-primary" form="commentRequest" value="投稿">
