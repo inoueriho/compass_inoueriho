@@ -26,8 +26,8 @@ class CalendarView{
     $html[] = '<th>水</th>';
     $html[] = '<th>木</th>';
     $html[] = '<th>金</th>';
-    $html[] = '<th>土</th>';
-    $html[] = '<th>日</th>';
+    $html[] = '<th class="weekend1">土</th>';
+    $html[] = '<th class="weekend2">日</th>';
     $html[] = '</tr>';
     $html[] = '</thead>';
     $html[] = '<tbody>';
@@ -56,6 +56,7 @@ class CalendarView{
         }
         // 日付そのものを表示する
         $html[] = $day->render();
+
 
         // 予約しているかの判断
         if(in_array($day->everyDay(), $day->authReserveDay())){

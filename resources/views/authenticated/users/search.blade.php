@@ -73,14 +73,18 @@
           <option value="DESC">降順</option>
         </select>
       </div>
-      <div class="">
-        <p class="m-0 search_conditions"><span>検索条件の追加</span></p>
+      <div class="search-area">
+        <p class="m-0 search_conditions">
+          <span>検索条件の追加</span>
+        </p>
         <div class="search_conditions_inner">
           <div>
             <label class="search-label">性別</label>
+            <div class="search-sex">
             <span>男</span><input type="radio" name="sex" value="1" form="userSearchRequest">
             <span>女</span><input type="radio" name="sex" value="2" form="userSearchRequest">
             <span>その他</span><input type="radio" name="sex" value="3" form="userSearchRequest">
+            </div>
           </div>
           <div>
             <label class="search-label">権限</label>
@@ -94,17 +98,19 @@
           </div>
           <div class="selected_engineer">
             <label class="search-label">選択科目</label>
+            <div class="search-subject">
             <span>国語</span><input type="checkbox" name="subjects[]" value="1" form="userSearchRequest">
             <span>数学</span><input type="checkbox" name="subjects[]" value="2" form="userSearchRequest">
             <span>英語</span><input type="checkbox" name="subjects[]" value="3" form="userSearchRequest">
+            </div>
           </div>
         </div>
       </div>
       <div>
-        <input type="reset" value="リセット" form="userSearchRequest">
+        <input class="search_btn" type="submit" name="search_btn" value="検索" form="userSearchRequest">
       </div>
-      <div>
-        <input type="submit" name="search_btn" value="検索" form="userSearchRequest">
+      <div class="search-reset">
+        <input  type="reset" value="リセット" form="userSearchRequest">
       </div>
     </div>
     <form action="{{ route('user.show') }}" method="get" id="userSearchRequest"></form>

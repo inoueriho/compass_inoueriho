@@ -41,8 +41,8 @@
     </div>
     @endforeach
   </div>
-  <div class="other_area border w-25">
-    <div class="border m-4">
+  <div class="other_area w-25">
+    <div class="m-4">
       <div class="postpage-btn"><a href="{{ route('post.input') }}">投稿</a></div>
       <div class="search-area">
         <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
@@ -50,22 +50,28 @@
       </div>
       <input type="submit" name="like_posts" class="category_btn-like" value="いいねした投稿" form="postSearchRequest">
       <input type="submit" name="my_posts" class="category_btn-mine" value="自分の投稿" form="postSearchRequest">
-      <ul>
-        @foreach($categories as $category)
-        <li class="main_categories" category_id="{{ $category->id }}">
-          <span>{{ $category->main_category }}<span>
-            <ul>
-              @foreach($category->subCategories as $sub_category)
-              <li class="sub_categories" >
-                <button type="hidden" name="sub_category_posts" class="category_btn" value="{{$sub_category->id}}" form="postSearchRequest">
+      <div class="category_conditions">
+        <p>カテゴリー検索</p>
+        <ul>
+          @foreach($categories as $category)
+          <li class="main_categories" category_id="{{ $category->id }}">
+            <div class="category_toggle"> <!-- クリック対象にする -->
+            <span>{{ $category->main_category }}<span>
+            </div>
+              <div class="category_conditions_inner">
+                <ul>
+                  @foreach($category->subCategories as $sub_category)
+                  <li class="sub_categories" >
+                  <button type="hidden" name="sub_category_posts" class="category_btn" value="{{$sub_category->id}}" form="postSearchRequest">
                   {{$sub_category->sub_category}}
-                </button>
-              </li>
-              @endforeach
-            </ul>
-        </li>
-        @endforeach
-      </ul>
+                  </button>
+                  </li>
+                  @endforeach
+                </ul>
+              </div>
+          </li>
+          @endforeach
+        </ul>
     </div>
   </div>
   <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>

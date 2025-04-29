@@ -9,18 +9,20 @@
       <p>カナ : <span>{{ $user->over_name_kana }}</span><span class="ml-1">{{ $user->under_name_kana }}</span></p>
       <p>性別 : @if($user->sex == 1)<span>男</span>@else<span>女</span>@endif</p>
       <p>生年月日 : <span>{{ $user->birth_day }}</span></p>
-      <div>選択科目 :
+      <p>選択科目 :
         @foreach($user->subjects as $subject)
         <span>{{ $subject->subject }}</span>
         @endforeach
-      </div>
+      </p>
       <div class="">
         @can('admin')
-        <span class="subject_edit_btn">選択科目の編集</span>
+        <div class="subject_edit_btn">
+          <span>選択科目の編集</span>
+        </div>
         <div class="subject_inner">
           <form action="{{ route('user.edit') }}" method="post">
             @foreach($subject_lists as $subject_list)
-            <div>
+            <div class="subject_list">
               <label>{{ $subject_list->subject }}</label>
               <input type="checkbox" name="subjects[]" value="{{ $subject_list->id }}">
             </div>

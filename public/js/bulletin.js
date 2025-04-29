@@ -55,7 +55,6 @@ $(function () {
 
     // });
   });
-
   $('.edit-modal-open').on('click', function () {
     $('.js-modal').fadeIn();
     var post_title = $(this).attr('post_title');
@@ -93,5 +92,18 @@ $(function () {
   });
   $('.cancel-modal-close').on('click', function () {
     $('.js-modal').fadeOut();
+  });
+});
+
+// 投稿一覧画面のカテゴリーでの絞り込み
+$(function () {
+  $('.category_toggle').click(function () {
+    // 自分の次の .category_conditions_inner を開閉
+    $(this).toggleClass('active');
+    $(this).next('.category_conditions_inner').slideToggle();
+
+    // 他のカテゴリを閉じたい場合は以下を追加（オプション）
+    $('.category_toggle').not(this).removeClass('active');
+    $('.category_toggle').not(this).next('.category_conditions_inner').slideUp();
   });
 });
