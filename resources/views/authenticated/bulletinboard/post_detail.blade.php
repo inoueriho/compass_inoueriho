@@ -4,8 +4,6 @@
   <div class="w-50 mt-5">
     <div class="m-3 detail_container">
       <div class="p-3">
-        @if($errors->has('post_title')) <p class="text-danger">{{ $errors->first('post_title') }}</p> @endif
-          @if($errors->has('post_body')) <p class="text-danger">{{ $errors->first('post_body') }}</p> @endif
         <div class="detail_inner_head">
           <!-- <p class="validation_message">タイトルは必ず入力してください。</p> -->
           <div class="post-sub_category">

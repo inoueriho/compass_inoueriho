@@ -24,13 +24,16 @@ li {
 }
 
 /* ログイン画面 */
+.login {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex !important;
+}
+
 .border-login {
   border-radius: 10px;
   box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.4);
-}
-
-.atlas-logo img {
-  width: 50%;
 }
 
 /* 新規登録画面 */
@@ -561,6 +564,10 @@ li {
 }
 
 /* 予約画面 */
+.calendar-area {
+  box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.4);
+}
+
 th.weekend1 {
   /* 土曜 */
   color: red;
@@ -569,6 +576,19 @@ th.weekend1 {
 th.weekend2 {
   /* 日曜 */
   color: blue;
+}
+
+th,
+td {
+  border: #dee2e6 solid 1px;
+}
+
+/* .calendar.table {
+  margin-bottom: 0;
+} */
+
+.btn-primary {
+  margin-top: 10px;
 }
 
 /* 予約詳細確認画面 */

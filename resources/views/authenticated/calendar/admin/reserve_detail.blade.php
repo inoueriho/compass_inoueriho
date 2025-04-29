@@ -2,9 +2,12 @@
 <!-- スクール予約詳細確認 -->
 @section('content')
 <div class="vh-100 d-flex" style="align-items:center; justify-content:center;">
+  <div class="border w-75 m-auto calendar-area" style="border-radius:5px; background:#FFF;">
   <div class="w-50 m-auto h-75">
+    <p class="text-center">{{ $calendar->getTitle() }}</p>
+
     <p><span>{{ $date }}日</span><span class="ml-3">{{ $part }}部</span></p>
-    <div class="h-75 reserve_user-area">
+    <div class="reserve_user-area">
       <table class="">
         <tr class="text-center calendar-item">
           <th class="w-25">ID</th>
@@ -22,6 +25,7 @@
         @endforeach
       </table>
     </div>
+  </div>
   </div>
 </div>
 @endsection
