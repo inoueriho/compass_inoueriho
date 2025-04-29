@@ -37,7 +37,7 @@ class CalendarsController extends Controller
         // 重複を除外
         $getDate = array_unique($getDate);
         // $getPart = array_unique($getPart);
-        dd($getDate, $getPart);
+        // dd($getDate, $getPart);
 
         $reserveDays = array_filter(array_combine($getDate, $getPart));
         foreach($reserveDays as $key => $value){

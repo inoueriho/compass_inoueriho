@@ -74,6 +74,7 @@ class CalendarView{
             $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px"></p>';
             $reserveData = $day->authReserveDate($day->everyDay())->first();
             $html[] = $reserveData->setting_part . '部参加';
+            $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }else{
             // 未来日だったら予約取り消しボタン表示
             $reserveData = $day->authReserveDate($day->everyDay())->first();
@@ -86,7 +87,7 @@ class CalendarView{
             data-id="'. $reserveData->id .'"
             setting_reserve="'. $reserveData->setting_reserve .'"
             setting_part="'. $reserveData->setting_part .'">' . $reservePartLabel .'</button>';
-            $html[] = '<input type="hidden" name="getDate[]" value="'. $day->everyDay() .'" form="reserveParts">';
+            // $html[] = '<input type="hidden" name="getDate[]" value="'. $day->everyDay() .'" form="reserveParts">';
             $html[] = '<input type="hidden" name="getPart[]" value="'. $reservePart .'" form="reserveParts">';
           }
         }else{
@@ -95,15 +96,15 @@ class CalendarView{
             // dd($day->everyDay());
           // 過去日だったら → プルダウン表示しない、受付終了
             $html[] = '<p class="m-auto p-0 w-75 text-muted" style="font-size:12px;">受付終了</p>';
-            $html[] = '<input type="hidden" name="getDate[]" value="'. $day->everyDay() .'" form="reserveParts">';
+            // $html[] = '<input type="hidden" name="getDate[]" value="'. $day->everyDay() .'" form="reserveParts">';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
 
           }else{
           // 未来日だったら → プルダウン表示
           // selectPartの中身CalenderWeekDay.phpにある
           $html[] = $day->selectPart($day->everyDay());
-          $html[] = '<input type="hidden" name="getDate[]" value="'. $day->everyDay() .'" form="reserveParts">';
-          $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+          // $html[] = '<input type="hidden" name="getDate[]" value="'. $day->everyDay() .'" form="reserveParts">';
+          // $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }
         }
         $html[] = $day->getDate();
