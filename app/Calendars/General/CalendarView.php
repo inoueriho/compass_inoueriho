@@ -79,7 +79,7 @@ class CalendarView{
           }else{
             // 未来日だったら予約取り消しボタン表示
             $reserveData = $day->authReserveDate($day->everyDay())->first();
-            $reservePart = $reserveData->setting_part;
+            $deletePart = $reserveData->setting_part;
             $reserveReserve = $reserveData->setting_reserve;
             // 上に定義してから使う$reserveData/$reservePart
             // モーダル操作時にフォーム送信されないようにtypeはbutton
@@ -89,7 +89,7 @@ class CalendarView{
             setting_reserve="'. $reserveData->setting_reserve .'"
             setting_part="'. $reserveData->setting_part .'">' . $reservePartLabel .'</button>';
             // $html[] = '<input type="hidden" name="getDate[]" value="'. $day->everyDay() .'" form="reserveParts">';
-            $html[] = '<input type="hidden" name="getPart[]" value="'. $reservePart .'" form="reserveParts">';
+            $html[] = '<input type="hidden" name="getPart[]" value="'. $deletePart .'" form="deleteParts">';
           }
         }else{
           // 予約がない日

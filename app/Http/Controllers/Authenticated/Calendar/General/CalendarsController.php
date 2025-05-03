@@ -44,6 +44,7 @@ class CalendarsController extends Controller
             $reserve_settings = ReserveSettings::where('setting_reserve', $key)
                                                 ->where('setting_part', $value)
                                                 ->first();
+                                            //↓枠数
             $reserve_settings->decrement('limit_users');
             $reserve_settings->users()->attach(Auth::id());
         }
@@ -72,7 +73,14 @@ class CalendarsController extends Controller
     //  ↓上で取ってきた値が入る
     if ($reserve) {
         $reserve->delete();
+        $setting = ReserveSettings::find($id);
+        if ($setting) {
+            $setting->limit_users += 1; // または $setting->limit += 1 など
+            $setting->save();
+        }
+        // dd($setting->limit_users);
     }
+
     return redirect()->route('calendar.general.show', ['user_id' => $user_id]);
 }
 

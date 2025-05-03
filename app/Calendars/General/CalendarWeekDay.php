@@ -68,6 +68,7 @@ class CalendarWeekDay{
      }
      $html[] = '</select>';
      return implode('', $html);
+    //  dd($one_part_frame);
    }
 
    function getDate(){
@@ -85,10 +86,10 @@ class CalendarWeekDay{
    function authReserveDate($reserveDate){
      return Auth::user()->reserveSettings->where('setting_reserve', $reserveDate);
    }
-//    public function getCarbonDate()
-// {
-//     return $this->date; // ← コンストラクタで受け取った Carbon インスタンス
-// }
+   public function getCarbonDate()
+{
+    return $this->date; // ← コンストラクタで受け取った Carbon インスタンス
+}
 
 
 }

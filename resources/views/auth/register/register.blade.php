@@ -21,19 +21,19 @@
         <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;">
             <div class="w-25 vh-75 border p-3">
                 <div class="register_form">
-                    <p class="validation_message">名前は必ず入力してください。</p>
+                    <!-- <p class="validation_message">名前は必ず入力してください。</p> -->
                     <div class="d-flex mt-3" style="justify-content:space-between">
 
                         <div class="" style="width:140px">
-                            <label class="d-block m-0" style="font-size:13px">姓</label>
                             @if($errors->has('over_name')) <span class="text-danger">{{ $errors->first('over_name') }}</span> @endif
+                            <label class="d-block m-0" style="font-size:13px">姓</label>
                             <div class="border-bottom border-primary" style="width:140px;">
                                 <input type="text" style="width:140px;" class="border-0 over_name" name="over_name">
                             </div>
                         </div>
                         <div class="" style="width:140px">
-                            <label class=" d-block m-0" style="font-size:13px">名</label>
                             @if($errors->has('under_name')) <span class="text-danger">{{ $errors->first('under_name') }}</span> @endif
+                            <label class=" d-block m-0" style="font-size:13px">名</label>
                             <div class="border-bottom border-primary" style="width:140px;">
                                 <input type="text" style="width:140px;" class="border-0 under_name"
                                     name="under_name">
@@ -42,16 +42,16 @@
                     </div>
                     <div class="d-flex mt-3" style="justify-content:space-between">
                         <div class="" style="width:140px">
-                            <label class="d-block m-0" style="font-size:13px">セイ</label>
                             @if($errors->has('over_name_kana')) <span class="text-danger">{{ $errors->first('over_name_kana') }}</span> @endif
+                            <label class="d-block m-0" style="font-size:13px">セイ</label>
                             <div class="border-bottom border-primary" style="width:140px;">
                                 <input type="text" style="width:140px;" class="border-0 over_name_kana"
                                     name="over_name_kana">
                             </div>
                         </div>
                         <div class="" style="width:140px">
-                            <label class="d-block m-0" style="font-size:13px">メイ</label>
                             @if($errors->has('under_name_kana')) <span class="text-danger">{{ $errors->first('under_name_kana') }}</span> @endif
+                            <label class="d-block m-0" style="font-size:13px">メイ</label>
                             <div class="border-bottom border-primary" style="width:140px;">
                                 <input type="text" style="width:140px;" class="border-0 under_name_kana"
                                     name="under_name_kana">
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <div class="mt-3">
-                        <p class="validation_message">メールアドレスは必ず入力してください。</p>
+                        <!-- <p class="validation_message">メールアドレスは必ず入力してください。</p> -->
                         @if($errors->has('mail_address')) <span class="text-danger">{{ $errors->first('mail_address') }}</span> @endif
                         <label class="m-0 d-block" style="font-size:13px">メールアドレス</label>
                         <div class="border-bottom border-primary">

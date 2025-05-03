@@ -169,6 +169,11 @@ li {
   justify-content: center;
 }
 
+.search_content {
+  display: flex;
+  min-height: 100vh;
+}
+
 .search-area {
   margin-bottom: 20px;
 }
@@ -397,7 +402,7 @@ li {
 }
 
 /* ユーザー検索 */
-.reserve_users_area {
+.search_users_area {
   display: flex;
   flex-wrap: wrap;
   width: 800px;
@@ -409,7 +414,7 @@ li {
   /* border-radius: 5px; */
 }
 
-.reserve_users_area span {
+.search_users_area span {
   font-size: 12px;
 }
 
@@ -563,6 +568,7 @@ li {
   display: inline-block;
 }
 
+/* カレンダー系 */
 /* 予約画面 */
 .calendar-area {
   box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.4);
@@ -591,8 +597,24 @@ td {
   margin-top: 10px;
 }
 
+/* 予約確認 */
+.confirm-area {
+  display: flex;
+  min-height: 100vh;
+}
+
+.confirm-table {
+  width: 100%;
+  margin: 20px;
+}
+
 /* 予約詳細確認画面 */
+.detail-table {
+  width: 100%;
+}
+
 .reserve_user-area {
+  padding: 20px;
   background-color: #FFF;
   border-radius: 5px;
 }
