@@ -276,8 +276,8 @@ li {
   border-radius: 10px;
 }
 
-.post_bottom_area {
-  /* justify-content: space-between; */
+.post_status {
+  margin-left: auto;
 }
 
 .like_btn,
@@ -294,6 +294,16 @@ li {
   font-size: 12px;
   color: red;
 }
+
+.board_area {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* .post_view {
+  display: flex;
+  min-height: 100vh;
+} */
 
 /* 掲示板 詳細画面 */
 .post-sub_category {
@@ -576,12 +586,12 @@ li {
 
 th.weekend1 {
   /* 土曜 */
-  color: red;
+  color: #0000FF;
 }
 
 th.weekend2 {
   /* 日曜 */
-  color: blue;
+  color: #FF0000;
 }
 
 th,
@@ -609,6 +619,12 @@ td {
 }
 
 /* 予約詳細確認画面 */
+.detail_calendar {
+  text-align: left;
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .detail-table {
   width: 100%;
 }
@@ -622,6 +638,16 @@ td {
 .calendar-item {
   background-color: #09A9D2;
   color: #FFF;
+}
+
+.reserve-detail:nth-child(even) {
+  background-color: #fff;
+  /* 偶数行の背景色 */
+}
+
+.reserve-detail:nth-child(odd) {
+  background-color: #E5F6FA;
+  /* 奇数行の背景色（任意） */
 }
 
 .reserve-detail {

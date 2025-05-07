@@ -6,14 +6,21 @@
       <div class="p-3">
         <div class="detail_inner_head">
           <!-- <p class="validation_message">タイトルは必ず入力してください。</p> -->
-          <div class="post-sub_category">
-            <!-- カテゴリー名 -->
-             <!-- foreachの記述忘れがちでエラーになるから注意 -->
-              <!-- $post->subCategoriesは「複数のSubCategoryモデル」を持っているので、個別に取り出さないとsub_categoryにアクセスできません。 -->
+          <!-- <div class="post-sub_category">
+            カテゴリー名
+             foreachの記述忘れがちでエラーになるから注意
+              $post->subCategoriesは「複数のSubCategoryモデル」を持っているので、個別に取り出さないとsub_categoryにアクセスできません。
              @foreach ($post->subCategories as $subCategory)
               {{ $subCategory->sub_category }}
              @endforeach
+          </div> -->
+          @if ($post->subCategories->isNotEmpty())
+          <div class="post-sub_category">
+            @foreach ($post->subCategories as $subCategory)
+            {{ $subCategory->sub_category }}
+            @endforeach
           </div>
+          @endif
           <!-- ↓ログインユーザーにのみ表示させる -->
           @if(Auth::user()->id == $post->user_id)
           {{ csrf_field() }}

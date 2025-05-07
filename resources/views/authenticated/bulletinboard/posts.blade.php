@@ -11,8 +11,8 @@
         @foreach ($post->subCategories as $subCategory)
           <p class="post-sub_category">{{ $subCategory->sub_category }}</p>
         @endforeach
-      <div class="post_bottom_area d-flex">
-        <div class="d-flex post_status">
+      <div class="post_bottom_area">
+        <div class="d-flex justify-content-end post_status">
           <div>
             <p class="mr-5">
             <i class="fa fa-comment" comment_id="{{ $post->id }}"></i>

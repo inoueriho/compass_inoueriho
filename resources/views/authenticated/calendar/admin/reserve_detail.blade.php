@@ -2,10 +2,15 @@
 <!-- スクール予約詳細確認 -->
 @section('content')
 <div class="vh-100 d-flex" style="align-items:center; justify-content:center;">
-  <p class="detail_calendar"><span>{{ $date }}日</span><span class="ml-3">{{ $part }}部</span></p>
-  <div class="border w-75 m-auto calendar-area" style="border-radius:5px; background:#FFF;">
-  <div class="w-50 h-75 m-auto">
+  <div class="text-center w-75"> <!-- 中央寄せ全体ラップ -->
+    <p class="detail_calendar mb-3">
+      <span>{{ $date }}日</span><span class="ml-3">{{ $part }}部</span>
+    </p>
+  <div class="border w-100 calendar-area" style="border-radius:5px; background:#FFF;">
 
+    <!-- m-autoとw-50 消した↑ -->
+
+  <div class=" h-75 m-auto">
     <div class="reserve_user-area">
       <table class="detail-table">
         <tr class="text-center calendar-item">
@@ -26,5 +31,6 @@
     </div>
   </div>
   </div>
+</div>
 </div>
 @endsection

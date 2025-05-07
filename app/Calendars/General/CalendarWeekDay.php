@@ -71,6 +71,8 @@ class CalendarWeekDay{
     //  dd($one_part_frame);
    }
 
+
+
    function getDate(){
      return '<input type="hidden" value="'. $this->carbon->format('Y-m-d') .'" name="getDate[]" form="reserveParts">';
    }
