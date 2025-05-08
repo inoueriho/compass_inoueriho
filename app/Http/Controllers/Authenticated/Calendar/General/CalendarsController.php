@@ -38,14 +38,12 @@ class CalendarsController extends Controller
         $getDate = array_unique($getDate);
         // $getPart = array_unique($getPart);
         // dd($getDate, $getPart);
-if (count($getDate) !== count($getPart)) {
-    dd('DateとPartの数が一致していません', $getDate, $getPart);
-}
+//         if (count($getDate) !== count($getPart)) {
+//     dd('DateとPartの数が一致していません', $getDate, $getPart);
+// }
 
         $reserveDays = array_filter(array_combine($getDate, $getPart));
-        $reserveData = $request->input('reserve', []);
         foreach($reserveDays as $key => $value){
-            if ($part === '') continue; // 未選択はスキップ
             $reserve_settings = ReserveSettings::where('setting_reserve', $key)
                                                 ->where('setting_part', $value)
                                                 ->first();

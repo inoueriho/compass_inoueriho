@@ -23,6 +23,17 @@ li {
   list-style: none;
 }
 
+.sidebar p {
+  display: inline-block;
+}
+
+.icon {
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+  display: inline;
+}
+
 /* ログイン画面 */
 .login {
   align-items: center;
@@ -48,7 +59,7 @@ li {
 
 /* サイドバー */
 .sidebar {
-  width: 150px;
+  width: 200px;
   background-color: #03AAD2;
   font-weight: bold;
   /* position: fixed;
@@ -256,7 +267,13 @@ li {
   text-align: left;
 }
 
+.post_create_container {
+  display: flex;
+  min-height: 100vh;
+}
+
 .post_create_area {
+  height: 100%;
   background: #FFF;
   border-radius: 10px;
 }

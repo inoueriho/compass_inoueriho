@@ -19,13 +19,36 @@
   <div class="d-flex">
     <div class="sidebar">
       @section('sidebar')
-      <p><a href="{{ route('top.show') }}">トップ</a></p>
-      <p><a href="/logout">ログアウト</a></p>
-      <p><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a></p>
-      @can ('admin_only')<p><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">スクール予約確認</a></p>@endcan
-      @can ('admin_only')<p><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">スクール枠登録</a></p>@endcan
-      <p><a href="{{ route('post.show') }}">掲示板</a></p>
-      <p><a href="{{ route('user.show') }}">ユーザー検索</a></p>
+      <div>
+        <img class="icon" src="{{ asset('image/home.png') }}" style="filter: brightness(0) invert(1);" />
+        <p><a href="{{ route('top.show') }}">トップ</a></p>
+      </div>
+      <div>
+        <img class="icon" src="{{ asset('image/exit.png') }}" style="filter: brightness(0) invert(1);" />
+        <p><a href="/logout">ログアウト</a></p>
+      </div>
+      <div>
+        <img class="icon" src="{{ asset('image/calendar.png') }}" style="filter: brightness(0) invert(1);" />
+        <p><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a></p>
+      </div>
+      <div>
+        @can ('admin_only')
+        <img class="icon" src="{{ asset('image/approve.png') }}" style="filter: brightness(0) invert(1);" />
+        <p><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">スクール予約確認</a></p>@endcan
+      </div>
+      <div>
+        @can ('admin_only')
+        <img class="icon" src="{{ asset('image/calendar-lines-pen.png') }}" style="filter: brightness(0) invert(1);" />
+        <p><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">スクール枠登録</a></p>@endcan
+      </div>
+      <div>
+        <img class="icon" src="{{ asset('image/comment-alt.png') }}" style="filter: brightness(0) invert(1);" />
+        <p><a href="{{ route('post.show') }}">掲示板</a></p>
+      </div>
+      <div>
+        <img class="icon" src="{{ asset('image/users-alt.png') }}" style="filter: brightness(0) invert(1);" />
+        <p><a href="{{ route('user.show') }}">ユーザー検索</a></p>
+      </div>
       @show
     </div>
     <div class="main-container">
