@@ -35,22 +35,42 @@ li {
 }
 
 /* ログイン画面 */
+.atlas-logo {
+  width: 200px;
+}
+
 .login {
   align-items: center;
   justify-content: center;
   flex-direction: column;
   display: flex !important;
+  background-color: #ECF1F5;
 }
 
 .border-login {
   border-radius: 10px;
   box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.4);
+  background-color: #fff;
+}
+
+.register-page {
+  margin-bottom: 20px;
 }
 
 /* 新規登録画面 */
+.register {
+  background-color: #ECF1F5;
+}
+
 .validation_message {
   color: red;
   margin: 0;
+}
+
+.register_form {
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.4);
+  background-color: #fff;
 }
 
 .register_btn:hover {
@@ -84,6 +104,18 @@ li {
   background: #FFF;
 }
 
+.post-title {
+  display: inline-block;
+}
+
+.post_status {
+  justify-content: space-between;
+}
+
+.gap-2 {
+  gap: 1rem;
+}
+
 /* スクール予約関連 */
 .day-blank {
   background: #D3D3D3;
@@ -110,9 +142,9 @@ li {
   font-size: 12px;
 }
 
-.adjust-table {
+/* .adjust-table {
   width: 70% !important;
-}
+} */
 
 .adjust-table td {
   padding: 0 !important;
@@ -152,6 +184,20 @@ li {
   width: 60%;
 }
 
+.edit-btn {
+  width: 74px;
+  height: 48px;
+}
+
+.close-btn {
+  margin-top: 10px;
+  width: 110px;
+}
+
+.btn-primary {
+  width: 110px;
+}
+
 /* 掲示板 */
 /* .sub_categories span {
   background-color: #9E9E9E;
@@ -178,6 +224,11 @@ li {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.postpage-btn a:hover {
+  text-decoration: none;
+  color: #fff;
 }
 
 .search_content {
@@ -297,6 +348,10 @@ li {
   margin-left: auto;
 }
 
+.detsail_post {
+  white-space: pre-wrap;
+}
+
 .like_btn,
 .un_like_btn {
   cursor: pointer;
@@ -346,10 +401,10 @@ li {
   color: #9E9E9E;
 }
 
-.detail_inner_head {
+/* .detail_inner_head {
   display: flex;
   justify-content: space-between;
-}
+} */
 
 .edit-modal-open {
   cursor: pointer;
@@ -376,6 +431,29 @@ li {
   border-radius: 5px;
 }
 
+.delete-btn:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+.detail_inner_head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.head_left {
+  display: flex;
+  align-items: center;
+}
+
+.head_right {
+  display: flex;
+  gap: 10px;
+  /* 編集・削除ボタンの間隔 */
+  align-items: center;
+}
+
 /* 掲示板 コメント */
 .comment_container {
   background: #FFF;
@@ -396,9 +474,9 @@ li {
   font-size: 12px;
 }
 
-.post_status span {
+/* .post_status span {
   font-size: 12px;
-}
+} */
 
 /* 掲示板　カテゴリー */
 .category_area {
@@ -432,7 +510,7 @@ li {
 .search_users_area {
   display: flex;
   flex-wrap: wrap;
-  width: 800px;
+  width: 1100px;
   margin: 10px auto;
   height: 80vh;
   overflow: scroll;
@@ -596,9 +674,34 @@ li {
 }
 
 /* カレンダー系 */
-/* 予約画面 */
+.content-box {
+  min-height: 600px;
+  /* 最小高さを設定して高さを揃える */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
 .calendar-area {
   box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.4);
+  flex-grow: 1;
+  /* 中身の高さに応じて伸びる */
+}
+
+.adjust-table-btn {
+  margin-right: 2rem;
+  /* margin-top: auto; */
+  /* ボタンを下に寄せる */
+}
+
+.dummy-space {
+  height: 40px;
+}
+
+/* 予約画面 */
+.calendar-day {
+  margin-top: 20px;
 }
 
 th.weekend1 {
@@ -611,20 +714,33 @@ th.weekend2 {
   color: #FF0000;
 }
 
-th,
 td {
   border: #dee2e6 solid 1px;
 }
 
-/* .calendar.table {
-  margin-bottom: 0;
-} */
+th {
+  border: #dee2e6 solid 1px;
+  padding: 12px;
+}
+
+.calendar-td {
+  height: 100px;
+}
 
 .btn-primary {
   margin-top: 10px;
 }
 
 /* 予約確認 */
+.day {
+  margin-bottom: 5px;
+}
+
+.day_part {
+  text-align: center;
+  padding-bottom: 4px;
+}
+
 .confirm-area {
   display: flex;
   min-height: 100vh;

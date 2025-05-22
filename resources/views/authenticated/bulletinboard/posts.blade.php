@@ -7,25 +7,21 @@
     @foreach($posts as $post)
     <div class="post_area border w-75 m-auto p-3">
       <p><span>{{ $post->user->over_name }}</span><span class="ml-3">{{ $post->user->under_name }}</span>さん</p>
-      <p><a href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $post->post_title }}</a></p>
-        @foreach ($post->subCategories as $subCategory)
-          <p class="post-sub_category">{{ $subCategory->sub_category }}</p>
-        @endforeach
+      <p class="post-title"><a href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $post->post_title }}</a></p>
       <div class="post_bottom_area">
-        <div class="d-flex justify-content-end post_status">
-          <div>
-            <p class="mr-5">
+        <div class="d-flex post_status justify-content-between ">
+          <!-- 左寄せ -->
+          <div class="d-flex flex-wrap">
+            @foreach ($post->subCategories as $subCategory)
+            <p class="post-sub_category">{{ $subCategory->sub_category }}</p>
+            @endforeach
+          </div>
+          <!-- 右寄せ -->
+          <div class="d-flex align-items-center gap-2">
+            <p class="m-0 comment-counts">
             <i class="fa fa-comment" comment_id="{{ $post->id }}"></i>
             {{ $post->commentCounts($post->id) }}
             </p>
-          </div>
-          <!-- <div>
-            @if(Auth::user()->is_Like($post->id))
-            <p class="m-0"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i>{{ $like->likeCounts($post->id) }}</p>
-            @else
-            <p class="m-0"><i class="fas fa-heart like_btn" post_id="{{ $post->id }}"></i>{{ $like->likeCounts($post->id) }}</p>
-            @endif
-          </div> -->
           <p class="m-0">
             @if(Auth::user()->is_Like($post->id))
             <!-- text-dangerでいろを赤くする -->
@@ -35,7 +31,7 @@
             @endif
             <span class="like_counts{{ $post->id }}">{{ $post->likeCounts() }}</span>
           </p>
-
+          </div>
         </div>
       </div>
     </div>

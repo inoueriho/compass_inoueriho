@@ -2,16 +2,14 @@
 @extends('layouts.sidebar')
 
 @section('content')
-<div class="vh-100 pt-5" style="background:#ECF1F6;">
-  <div class="border w-75 m-auto pt-5 pb-5" style="border-radius:5px; background:#FFF;">
-    <div class="w-75 m-auto border" style="border-radius:5px;">
-      <p class="text-center">{{ $calendar->getTitle() }}</p>
-      <div class="">
+<div class="w-100 min-vh-100 d-flex" style="align-items:center; justify-content:center;">
+  <div class="border w-75 m-auto content-box" style="border-radius:5px; background:#FFF;">
+    <!-- <div class="w-100 p-5 calendar-area"> -->
+      <p class="text-center calendar-day">{{ $calendar->getTitle() }}</p>
         {!! $calendar->render() !!}
-      </div>
-    </div>
-    <div class="text-right w-75 m-auto">
+      <div class="adjust-table-btn w-100 text-right">
       <input type="submit" class="btn btn-primary" value="予約する" form="reserveParts" onclick="return confirm('予約してよろしいですか？')">
+    <!-- </div> -->
     </div>
   </div>
 </div>
@@ -27,7 +25,7 @@
           <p>上記の予約をキャンセルしてもよろしいですか？</p>
         </div>
         <div class="w-50 m-auto edit-modal-btn d-flex">
-          <a class="js-modal-close btn btn-danger d-inline-block" href="">閉じる</a>
+          <a class="close-btn btn btn-danger d-inline-block" href="">閉じる</a>
           <input type="hidden" class="cancel-modal-hidden" name="reserve-setting-id" value="">
           <input type="submit" class="btn btn-primary d-block" value="キャンセル">
           <!-- <input type="hidden" class="cancel-reserve-id" name="reserve_id" value="">

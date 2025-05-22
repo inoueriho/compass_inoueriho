@@ -18,9 +18,9 @@
 
 <body>
     <form action="{{ route('registerPost') }}" method="POST">
-        <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;">
-            <div class="w-25 vh-75 border p-3">
-                <div class="register_form">
+        <div class="w-100 vh-100 d-flex register" style="align-items:center; justify-content:center;">
+            <div class="w-25 vh-75 border p-3 register_form">
+                <div class="">
                     <!-- <p class="validation_message">名前は必ず入力してください。</p> -->
                     <div class="d-flex mt-3" style="justify-content:space-between">
 
@@ -77,8 +77,9 @@
                     <label style="font-size:13px">その他</label>
                 </div>
                 <div class="mt-3">
-                    <label class="d-block m-0 aa" style="font-size:13px">生年月日</label>
                     @if($errors->has('datetime')) <span class="text-danger">{{ $errors->first('datetime') }}</span> @endif
+                    <label class="d-block m-0 aa" style="font-size:13px">生年月日</label>
+
                     <select class="old_year" name="old_year">
                         <option value="none">-----</option>
                         <option value="1985">1985</option>
@@ -183,8 +184,9 @@
                     @endforeach
                 </div>
                 <div class="mt-3">
-                    <label class="d-block m-0" style="font-size:13px">パスワード</label>
                     @if($errors->has('password')) <span class="text-danger">{{ $errors->first('password') }}</span> @endif
+                    <label class="d-block m-0" style="font-size:13px">パスワード</label>
+
                     <div class="border-bottom border-primary">
                         <input type="password" class="border-0 w-100 password" name="password">
                     </div>

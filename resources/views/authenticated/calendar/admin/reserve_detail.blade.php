@@ -7,7 +7,6 @@
       <span>{{ $date }}日</span><span class="ml-3">{{ $part }}部</span>
     </p>
   <div class="border w-100 calendar-area" style="border-radius:5px; background:#FFF;">
-
     <!-- m-autoとw-50 消した↑ -->
 
   <div class=" h-75 m-auto">

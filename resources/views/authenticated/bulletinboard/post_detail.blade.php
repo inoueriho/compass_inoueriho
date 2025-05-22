@@ -14,6 +14,8 @@
               {{ $subCategory->sub_category }}
              @endforeach
           </div> -->
+          <!-- 左寄せ要素 -->
+          <div class="head_left_group">
           @if ($post->subCategories->isNotEmpty())
           <div class="post-sub_category">
             @foreach ($post->subCategories as $subCategory)
@@ -21,14 +23,18 @@
             @endforeach
           </div>
           @endif
+          </div>
           <!-- ↓ログインユーザーにのみ表示させる -->
           @if(Auth::user()->id == $post->user_id)
+          <!-- 右寄せ要素 -->
+          <div class="head_right">
           {{ csrf_field() }}
-          <div>
+          <div class="post_detail-btn">
             <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
             <a class="delete-btn" href="{{ route('post.delete', ['id' => $post->id]) }}" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">削除</a>
           </div>
           @endif
+          </div>
         </div>
 
         <div class="contributor d-flex">
@@ -88,7 +94,7 @@
         <div class="w-50 m-auto edit-modal-btn d-flex">
           <a class="js-modal-close btn btn-danger d-inline-block" href="">閉じる</a>
           <input type="hidden" class="edit-modal-hidden" name="post_id" value="">
-          <input type="submit" class="btn btn-primary d-block" value="編集">
+          <input type="submit" class="btn btn-primary edit-btn d-block" value="編集">
         </div>
       </div>
       {{ csrf_field() }}

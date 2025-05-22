@@ -21,13 +21,13 @@ class CalendarView{
     $html[] = '<table class="table">';
     $html[] = '<thead>';
     $html[] = '<tr>';
-    $html[] = '<th>月</th>';
-    $html[] = '<th>火</th>';
-    $html[] = '<th>水</th>';
-    $html[] = '<th>木</th>';
-    $html[] = '<th>金</th>';
-    $html[] = '<th class="weekend1">土</th>';
-    $html[] = '<th class="weekend2">日</th>';
+    $html[] = '<th class="border">月</th>';
+    $html[] = '<th class="border">火</th>';
+    $html[] = '<th class="border">水</th>';
+    $html[] = '<th class="border">木</th>';
+    $html[] = '<th class="border">金</th>';
+    $html[] = '<th class=" border weekend1">土</th>';
+    $html[] = '<th class=" border weekend2">日</th>';
     $html[] = '</tr>';
     $html[] = '</thead>';
     $html[] = '<tbody>';
@@ -98,7 +98,7 @@ class CalendarView{
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
             // dd($day->everyDay());
           // 過去日だったら → プルダウン表示しない、受付終了
-            $html[] = '<p class="m-auto p-0 w-75 text-muted" style="font-size:12px;">受付終了</p>';
+            $html[] = '<p class="m-auto p-0 w-75 text-muted";">受付終了</p>';
             $html[] = '<input type="hidden" name="getDate[]" value="'. $day->everyDay() .'" form="reserveParts">';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
 
