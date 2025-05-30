@@ -53,7 +53,7 @@
     </div>
     @endforeach
   </div>
-  <div class="search_area w-25 border">
+  <div class="user_search_area w-25 border">
     <p class="search">ユーザー検索</p>
     <div class="">
       <div>
@@ -73,11 +73,12 @@
           <option value="DESC">降順</option>
         </select>
       </div>
-      <div class="search-area">
-        <p class="m-0 search_conditions">
+      <div class="">
+        <div class="m-0 search_conditions">
           <span>検索条件の追加</span>
-        </p>
-        <div class="search_conditions_inner">
+        </div>
+      </div>
+      <div class="search_conditions_inner">
           <div>
             <label class="search-label">性別</label>
             <div class="search-sex">
@@ -105,7 +106,6 @@
             </div>
           </div>
         </div>
-      </div>
       <div>
         <input class="search_btn" type="submit" name="search_btn" value="検索" form="userSearchRequest">
       </div>

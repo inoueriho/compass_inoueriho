@@ -41,8 +41,7 @@
     <div class="m-4">
       <div class="postpage-btn"><a href="{{ route('post.input') }}">投稿</a></div>
       <div class="search-area">
-        <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
-        <input type="submit" value="検索" form="postSearchRequest">
+        <input class="key_input" type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest"><input class="key_search" type="submit" value="検索" form="postSearchRequest">
       </div>
       <input type="submit" name="like_posts" class="category_btn-like" value="いいねした投稿" form="postSearchRequest">
       <input type="submit" name="my_posts" class="category_btn-mine" value="自分の投稿" form="postSearchRequest">

@@ -94,9 +94,19 @@ li {
   width: 100%;
 }
 
-.sidebar p a {
+.sidebar a {
   color: #FFF;
 }
+
+.sidebar a:hover {
+  color: #dcdcdc;
+  text-decoration: none;
+}
+
+/* .sidebar_link:hover {
+  color: #FFF;
+
+} */
 
 /* トップページ */
 .user_status {
@@ -184,7 +194,7 @@ li {
   width: 60%;
 }
 
-.edit-btn {
+/* .edit-btn {
   width: 74px;
   height: 48px;
 }
@@ -192,11 +202,11 @@ li {
 .close-btn {
   margin-top: 10px;
   width: 110px;
-}
+} */
 
-.btn-primary {
+/* .btn-primary {
   width: 110px;
-}
+} */
 
 /* 掲示板 */
 /* .sub_categories span {
@@ -214,6 +224,12 @@ li {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.postpage-btn:hover {
+  filter: brightness(90%);
 }
 
 .postpage-btn a {
@@ -236,8 +252,40 @@ li {
   min-height: 100vh;
 }
 
+.user_search_area {
+  padding-left: 20px;
+}
+
 .search-area {
+  display: flex;
+  width: 100%;
   margin-bottom: 20px;
+}
+
+.key_input {
+  flex: 1;
+  /* ↑残り全部の幅を取る */
+  background: none;
+  border: solid 1px;
+  border-radius: 5px 0 0 5px;
+  margin: 0;
+}
+
+.key_search {
+  background: #09A9D2;
+  border: none;
+  color: #FFF;
+  width: 35%;
+  border: solid #09A9D2 1px;
+  text-decoration: none;
+  align-items: center;
+  border-radius: 0 5px 5px 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.key_search:hover {
+  filter: brightness(90%);
 }
 
 .category_btn-like {
@@ -250,6 +298,9 @@ li {
   width: 45%;
   height: 30px;
   margin-bottom: 20px;
+  /* ↓hoverの時じゃないほうがいい。押せることに気づきにくくなる */
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
 }
 
 .category_btn-mine {
@@ -262,6 +313,13 @@ li {
   width: 45%;
   height: 30px;
   margin-bottom: 20px;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.category_btn-like:hover,
+.category_btn-mine:hover {
+  filter: brightness(90%);
 }
 
 .category_conditions p {
@@ -273,6 +331,8 @@ li {
   padding-right: 20px;
   /* 矢印分の余白 */
   cursor: pointer;
+  border-bottom: #212529 solid 1px;
+  margin: 10px;
 }
 
 .category_toggle::after {
@@ -302,10 +362,6 @@ li {
   display: none;
 }
 
-.category_toggle {
-  border-bottom: #212529 solid 1px;
-}
-
 .category_btn {
   background-color: transparent;
   font-size: 12px;
@@ -314,8 +370,9 @@ li {
   border-bottom: #212529 solid 1px;
   color: #212529;
   width: 70%;
-  margin-left: 20px;
+  margin: 10px 10px 10px 20px;
   text-align: left;
+  cursor: pointer;
 }
 
 .post_create_container {
@@ -384,6 +441,7 @@ li {
   color: #FFF;
   padding: 5px;
   display: inline-block;
+  margin-bottom: 0;
 }
 
 .contributor {
@@ -412,6 +470,12 @@ li {
   color: #fff;
   padding: 5px 10px;
   border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.edit-modal-open:hover {
+  filter: brightness(90%);
 }
 
 .modal-inner-body textarea {
@@ -421,6 +485,14 @@ li {
 
 .edit-modal-btn {
   justify-content: space-between;
+  align-items: center;
+  /* ↑これを追加して縦位置を中央揃えに */
+}
+
+/* 投稿編集画面のモーダルの中のぼたん */
+.edit-btn,
+.close_btn {
+  width: 6rem;
 }
 
 .delete-btn {
@@ -429,11 +501,14 @@ li {
   color: #fff;
   padding: 5px 10px;
   border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
 }
 
 .delete-btn:hover {
   text-decoration: none;
   color: #fff;
+  filter: brightness(90%);
 }
 
 .detail_inner_head {
@@ -452,6 +527,11 @@ li {
   gap: 10px;
   /* 編集・削除ボタンの間隔 */
   align-items: center;
+}
+
+.detail-wrapper {
+  display: flex;
+  min-height: 100vh;
 }
 
 /* 掲示板 コメント */
@@ -527,8 +607,8 @@ li {
   border-radius: 10px;
   box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.4);
   background-color: #FFF;
-  width: 250px;
-  height: 250px;
+  width: 15.625rem;
+  height: 15.625rem;
   margin: 5px;
   padding-top: 10px;
   padding-left: 10px;
@@ -556,10 +636,6 @@ li {
   margin-bottom: 10px;
 }
 
-.search-area {
-  margin-bottom: 20px;
-}
-
 .search-label {
   margin: 10px 0;
   color: #2E7CAB;
@@ -577,6 +653,7 @@ li {
 .search_conditions {
   width: 60%;
   border-bottom: #494949 solid 1px;
+  cursor: pointer;
 }
 
 .search_conditions::after {
@@ -604,6 +681,7 @@ li {
 
 .search_conditions_inner {
   display: none;
+  margin-top: 10px;
 }
 
 
@@ -624,21 +702,29 @@ li {
 .search_btn {
   background-color: #09A9D2;
   border-radius: 5px;
-  margin-bottom: 20px;
+  margin: 20px 0;
   border: none;
   color: #fff;
   padding: 10px;
   width: 60%;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.search_btn:hover {
+  filter: brightness(95%);
 }
 
 .search-reset {
   width: 60%;
   text-align: center;
+  cursor: pointer;
 }
 
 .search-reset input {
   border: none;
   color: #2E7CAB;
+  cursor: pointer;
 }
 
 .subject_edit_btn {
@@ -714,6 +800,14 @@ th.weekend2 {
   color: #FF0000;
 }
 
+td.weekend1 {
+  color: #0000FF;
+}
+
+td.weekend2 {
+  color: #FF0000;
+}
+
 td {
   border: #dee2e6 solid 1px;
 }
@@ -727,9 +821,9 @@ th {
   height: 100px;
 }
 
-.btn-primary {
+/* .btn-primary {
   margin-top: 10px;
-}
+} */
 
 /* 予約確認 */
 .day {
@@ -789,4 +883,8 @@ th {
 
 .border {
   border: none;
+}
+
+.adjust-table-btn {
+  margin-top: 20px;
 }

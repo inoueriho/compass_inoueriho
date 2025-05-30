@@ -45,15 +45,20 @@ class CalendarView{
         // 今日の日付を取得
         $toDay = $this->carbon->copy()->format("Y-m-d");
         // 各dayが過去日かどうか判定する
-        if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-          $html[] = '<td class="calendar-td past-day">';
-        }else{
-          $html[] = '<td class="calendar-td '.$day->getClassName().'">';
-          // 予約がある場合、参加部数を表示
-          // $html[] = $day->render();  // 日付の表示
-          // $html[] = $reservation->getParticipatedCount() . '部'; // 参加部数の表示
-          // $html[] = '</td>';
+        // if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
+        //   $html[] = '<td class="calendar-td past-day">';
+        // }else{
+        //   $html[] = '<td class="calendar-td '.$day->getClassName().'">';
+        // }
+        // 各dayが過去日かどうか判定する
+        $isPast = ($startDay <= $day->everyDay() && $toDay >= $day->everyDay());
+        $weekdayClass = $day->getClassName(); // 例: 'weekend1' や 'weekend2'
+        $classes = 'calendar-td ' . $weekdayClass;
+        if ($isPast) {
+          $classes .= ' past-day';
         }
+        $html[] = '<td class="' . $classes . '">';
+
         // 日付そのものを表示する
         $html[] = $day->render();
 

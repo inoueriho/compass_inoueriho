@@ -19,36 +19,50 @@
   <div class="d-flex">
     <div class="sidebar">
       @section('sidebar')
-      <div>
-        <img class="icon" src="{{ asset('image/home.png') }}" style="filter: brightness(0) invert(1);" />
-        <p><a href="{{ route('top.show') }}">トップ</a></p>
-      </div>
-      <div>
-        <img class="icon" src="{{ asset('image/exit.png') }}" style="filter: brightness(0) invert(1);" />
-        <p><a href="/logout">ログアウト</a></p>
-      </div>
-      <div>
-        <img class="icon" src="{{ asset('image/calendar.png') }}" style="filter: brightness(0) invert(1);" />
-        <p><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a></p>
-      </div>
-      <div>
-        @can ('admin_only')
-        <img class="icon" src="{{ asset('image/approve.png') }}" style="filter: brightness(0) invert(1);" />
-        <p><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">スクール予約確認</a></p>@endcan
-      </div>
-      <div>
-        @can ('admin_only')
-        <img class="icon" src="{{ asset('image/calendar-lines-pen.png') }}" style="filter: brightness(0) invert(1);" />
-        <p><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">スクール枠登録</a></p>@endcan
-      </div>
-      <div>
-        <img class="icon" src="{{ asset('image/comment-alt.png') }}" style="filter: brightness(0) invert(1);" />
-        <p><a href="{{ route('post.show') }}">掲示板</a></p>
-      </div>
-      <div>
-        <img class="icon" src="{{ asset('image/users-alt.png') }}" style="filter: brightness(0) invert(1);" />
-        <p><a href="{{ route('user.show') }}">ユーザー検索</a></p>
-      </div>
+      <a href="{{ route('top.show') }}">
+        <div class="sidebar_link">
+          <img class="icon" src="{{ asset('image/home.png') }}" style="filter: brightness(0) invert(1);" />
+          <p>トップ</p>
+        </div>
+      </a>
+      <a href="/logout">
+        <div class="sidebar_link">
+          <img class="icon" src="{{ asset('image/exit.png') }}" style="filter: brightness(0) invert(1);" />
+          <p>ログアウト</p>
+        </div>
+      </a>
+      <a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">
+        <div class="sidebar_link">
+          <img class="icon" src="{{ asset('image/calendar.png') }}" style="filter: brightness(0) invert(1);" />
+          <p>スクール予約</p>
+        </div>
+      </a>
+      <a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">
+        <div class="sidebar_link">
+          @can ('admin_only')
+          <img class="icon" src="{{ asset('image/approve.png') }}" style="filter: brightness(0) invert(1);" />
+          <p>スクール予約確認</p>@endcan
+        </div>
+      </a>
+      <a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">
+        <div class="sidebar_link">
+          @can ('admin_only')
+          <img class="icon" src="{{ asset('image/calendar-lines-pen.png') }}" style="filter: brightness(0) invert(1);" />
+          <p>スクール枠登録</p>@endcan
+        </div>
+      </a>
+      <a href="{{ route('post.show') }}">
+        <div class="sidebar_link">
+          <img class="icon" src="{{ asset('image/comment-alt.png') }}" style="filter: brightness(0) invert(1);" />
+          <p>掲示板</p>
+        </div>
+      </a>
+      <a href="{{ route('user.show') }}">
+        <div class="sidebar_link">
+          <img class="icon" src="{{ asset('image/users-alt.png') }}" style="filter: brightness(0) invert(1);" />
+          <p>ユーザー検索</p>
+        </div>
+      </a>
       @show
     </div>
     <div class="main-container">

@@ -1,6 +1,6 @@
 @extends('layouts.sidebar')
 @section('content')
-<div class="vh-100 d-flex">
+<div class="detail-wrapper d-flex">
   <div class="w-50 mt-5">
     <div class="m-3 detail_container">
       <div class="p-3">
@@ -33,8 +33,9 @@
             <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
             <a class="delete-btn" href="{{ route('post.delete', ['id' => $post->id]) }}" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">削除</a>
           </div>
-          @endif
           </div>
+          @endif
+
         </div>
 
         <div class="contributor d-flex">
@@ -92,7 +93,7 @@
 
         </div>
         <div class="w-50 m-auto edit-modal-btn d-flex">
-          <a class="js-modal-close btn btn-danger d-inline-block" href="">閉じる</a>
+          <a class="btn btn-danger close_btn d-inline-block" href="">閉じる</a>
           <input type="hidden" class="edit-modal-hidden" name="post_id" value="">
           <input type="submit" class="btn btn-primary edit-btn d-block" value="編集">
         </div>

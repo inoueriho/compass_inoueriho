@@ -39,11 +39,19 @@ class CalendarView{
       foreach($days as $day){
         $startDay = $this->carbon->format("Y-m-01");
         $toDay = $this->carbon->format("Y-m-d");
-        if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-          $html[] = '<td class="past-day border">';
-        }else{
-          $html[] = '<td class="border '.$day->getClassName().'">';
+        // if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
+        //   $html[] = '<td class="past-day border">';
+        // }else{
+        //   $html[] = '<td class="border '.$day->getClassName().'">';
+        // }
+        // 各dayが過去日かどうか判定する
+        $isPast = ($startDay <= $day->everyDay() && $toDay >= $day->everyDay());
+        $weekdayClass = $day->getClassName();
+        $classes = 'calendar-td ' . $weekdayClass;
+        if ($isPast) {
+          $classes .= ' past-day';
         }
+        $html[] = '<td class="' . $classes . '">';
         $html[] = $day->render();
         $html[] = $day->dayPartCounts($day->everyDay());
         $html[] = '</td>';
