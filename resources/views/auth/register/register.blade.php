@@ -18,8 +18,8 @@
 
 <body>
     <form action="{{ route('registerPost') }}" method="POST">
-        <div class="w-100 vh-100 d-flex register" style="align-items:center; justify-content:center;">
-            <div class="w-25 border p-3 register_form">
+        <div class="w-100  d-flex register" style="align-items:center; justify-content:center;">
+            <div class=" border p-3 register_form">
                 <div class="">
                     <!-- <p class="validation_message">名前は必ず入力してください。</p> -->
                     <div class="d-flex mt-3" style="justify-content:space-between">
