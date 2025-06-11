@@ -669,6 +669,9 @@ li {
   width: 60%;
   border-bottom: #494949 solid 1px;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .search_conditions::after {
@@ -690,7 +693,7 @@ li {
 }
 
 .search_conditions span {
-  margin-right: 30px;
+  margin-right: 10px;
   cursor: pointer;
 }
 
